@@ -1,0 +1,82 @@
+ <div class="scrollable scroll_top" ui-shared-state="searchBar" >
+ <div class="scrollable-content" >
+<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+		<div class="tg-innerpagebanner">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="tg-pagetitle">
+							<h1>Post Job</h1>
+						</div>
+						<ol class="tg-breadcrumb">
+							<li><a href="">Home</a></li>
+							<li class="tg-active">Post job</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+			
+			<div class="tg-main-section tg-haslayout">
+				<div class="container">
+					<div class="row">
+						<div id="tg-content" class="tg-content">
+							<form class="tg-themeform tg-formamanagejobs">
+						<fieldset>
+							<div class="row" style="margin-bottom:20px; ">
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+								<a class="tg-btn tg-btnpostanewjob" href="" ng-click="saveJob(jobs)">Send</a>
+							</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<input type="text" name="text" class="form-control" placeholder="Fixed Price">
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<input type="text" name="text" class="form-control" placeholder="Hourly Price">
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<textarea placeholder="Proposal"></textarea>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-repeat="qs in jobDetail.project_questions">
+									<h2>{{qs}}</h2>
+									<div class="form-group">
+										<textarea placeholder="Please write the answers of above questions"></textarea>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						
+						
+						
+					</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<!--************************************
+					Login Register End
+			*************************************-->
+		</main>
+		<div ng-include="'templates/footer.html'"></div>	
+		<!--************************************
+				Footer End
+		*************************************-->
+	</div>
+	</div>
+	</div>
+	

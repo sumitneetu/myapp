@@ -1,0 +1,170 @@
+<div class="scrollable scroll_top" ui-shared-state="searchBar" >
+ <div class="scrollable-content" >
+	<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+		<div class="tg-innerpagebanner">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="tg-pagetitle">
+							<h1>Job Detail</h1>
+						</div>
+						<ol class="tg-breadcrumb">
+							<li><a href="html/service_provider/jobdetail.html#">Home</a></li>
+							<li class="tg-active">job Detail</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--************************************
+				Inner Page Banner End
+		*************************************-->
+		<!--************************************
+				Main Start
+		*************************************-->
+		<main id="tg-main" class="tg-main tg-haslayout">
+			<div class="tg-detailpage tg-jobdetail">
+				<div class="tg-detailpagehead">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="tg-detailpageheadcontent">
+									
+									<div class="tg-companycontent">
+										
+										<div class="tg-title">
+											<h1>{{jobDetail.job_title}}</h1>
+											 <span class="tg-jobpostedby">Project type: <a href="javascript:void(0);">Full Time</a></span>  
+											 <!--
+											 <ul class="tg-tags">
+												<li> <a class="tg-tag" href="html/service_provider/jobdetail.html#">Full Time</a> </li>
+											</ul>
+											-->
+										</div>
+									</div>
+									<a class="tg-btn" href="" ng-click="sendProposal(jobDetail.id)">Send Proposal</a>
+								</div>
+								<ul class="tg-jobmatadata">
+									<li>
+										<div class="tg-box tg-posteddate">
+											<span class="tg-jobmataicon"><i class="lnr lnr-calendar-full"></i></span>
+											<div class="tg-jobmatacontent">
+												<strong>Posted Date</strong>
+												<span>{{jobDetail.created}}</span>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="tg-box tg-applicantapplied">
+											<span class="tg-jobmataicon"><i class="lnr lnr-book"></i></span>
+											<div class="tg-jobmatacontent">
+												<strong>Project Budget</strong>
+												<span>${{jobDetail.project_budget}}</span>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="tg-box tg-views">
+											<span class="tg-jobmataicon"><i class="lnr lnr-eye"></i></span>
+											<div class="tg-jobmatacontent">
+												<strong>Proposals</strong>
+												<span>Total proposal: 22508</span>
+											</div>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="tg-twocolumns" class="tg-twocolumns">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 pull-left">
+								<div id="tg-content" class="tg-content">
+									<div class="tg-companyfeatures">
+										<div class="tg-companyfeaturebox tg-introduction">
+											<div class="tg-companyfeaturetitle">
+												<h3>Introduction</h3>
+											</div>
+											<div class="tg-description" data-readmore="" aria-expanded="false" id="rmjs-1" >
+												<p>{{jobDetail.job_description}}</p>
+											</div>
+										</div>
+										<div class="tg-companyfeaturebox tg-jobrequirments">
+											<div class="tg-companyfeaturetitle">
+												<h3>Job Questions</h3>
+											</div>
+											<ul class="tg-themeliststyle tg-themeliststyletick">
+												<li ng-repeat="qs in jobDetail.project_questions track by $index">{{qs}}</li>
+											</ul>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 pull-right">
+								<aside id="tg-sidebar" class="tg-sidebar">
+									
+									<!--<div class="tg-widget tg-widgetshare">
+									<div class="tg-widgettitle">
+											<h3>User Info</h3>
+										</div>
+										 <div class="tg-widgetcontent">
+											<ul class="tg-socialicons">
+												<li class="tg-facebook"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-facebook"></i></a></li>
+												<li class="tg-twitter"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-twitter"></i></a></li>
+												<li class="tg-linkedin"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-linkedin"></i></a></li>
+												<li class="tg-googleplus"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-google-plus"></i></a></li>
+												<li class="tg-rss"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-rss"></i></a></li>
+												<li class="tg-vimeo"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-vimeo"></i></a></li>
+												<li class="tg-tumblr"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-tumblr"></i></a></li>
+												<li class="tg-yahoo"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-yahoo"></i></a></li>
+												<li class="tg-yelp"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-yelp"></i></a></li>
+												<li class="tg-pinterestp"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-pinterest-p"></i></a></li>
+												<li class="tg-youtube"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-youtube"></i></a></li>
+												<li class="tg-stumbleupon"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-stumbleupon"></i></a></li>
+												<li class="tg-reddit"><a href="html/service_provider/jobdetail.html#"><i class="fa fa-reddit"></i></a></li>
+											</ul> 
+										</div>
+									</div>-->
+									<div class="tg-widget tg-widgetrelatedjobs">
+										<div class="tg-widgettitle">
+											<h3>User info</h3>
+										</div>
+										<div class="tg-widgetcontent">
+											<ul>
+												<li>
+													<div class="tg-serviceprovidercontent">
+														
+														<div class="tg-companycontent">
+															<div class="tg-title">
+																<h3>Job Success:</h3>
+															</div>
+															<span class="tg-jobpostedby">By: <a href="javascript:void(0);">Blue Bird Organization</a></span>
+														</div>
+													</div>
+												</li>
+												
+											</ul>
+										</div>
+									</div>
+								</aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		
+		<!-- End Job details section -->
+		
+		
+		 <div ng-include="'templates/footer.html'"></div>
+		<!--************************************
+				Footer End
+		*************************************-->
+	</div>
+	</div>
+	</div>

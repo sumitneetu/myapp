@@ -1,0 +1,60 @@
+#slides_control > div{
+  height: 200px;
+}
+.scroll_top {
+top:60px !important;
+}
+img{
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
+}
+.loading {
+    margin-top: 25%;
+    margin-left: 45%;
+    font-size: 90px;
+}
+.JobParagraph {
+margin:0 0 7px !important;
+color:#000;
+}
+.jobHeading {
+padding-left:0px;
+color:#5dc560 !important;
+}
+.jobHeading a {
+
+color:#5dc560 !important;
+}
+.pad-left-0 {
+padding-left:0px;
+}
+
+.userImage img{
+    width: 133px;
+    height: 133px;
+    border-radius: 96px;
+}
+
+.formerror {
+  color:red;
+}
+.error {
+    border-color: #a94442;
+     color:red;
+}
+.regularuser .form-group {
+margin-bottom:5px;
+}
+.tg-pagination .active {
+background:#5dc560;
+}
+.tg-btn {
+	background:#5dc560;
+}

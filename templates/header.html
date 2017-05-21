@@ -1,0 +1,58 @@
+<header id="tg-header" class="tg-header tg-haslayout">
+			<div class="tg-navigationarea">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<strong class="tg-logo" ><a href="" ng-click="goToPage('/')">
+							<img src="img/logo.png" alt="logo image" style="width:50%;"></a></strong>
+							<div class="tg-rightarea">
+								<nav id="tg-nav" class="tg-nav">
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tg-navigation" aria-expanded="false">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+									</div>
+									<div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
+										<ul>
+											<li><a href="" ng-click="goToPage('howitwork')">How it work ?</a></li>
+											<li class="menu-item-has-children"><span class="tg-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+												<a href="javascript:void(0);">Find Jobs</a>
+												<ul class="sub-menu">
+													<li class="menu-item-has-children" ng-repeat="cat in categories track by $index"><span class="tg-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+														<a href="" ng-click="goToJobPage(cat.id)">{{cat.category_name}}</a>
+														<ul class="sub-menu">
+															<li ng-repeat="subcat in cat.subcategory track by $index"><a href="" ng-click="goToJobPage(cat.id)">{{subcat.subcat_name}}</a></li>
+														</ul>
+													</li>
+													
+												</ul>
+											</li>
+											<li class="menu-item-has-children"><span class="tg-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+												<a href="">You are looking for ?</a>
+												<ul class="sub-menu">
+													<li>
+														<a href="" ng-click="goToPage('freelancers')" >Freelancer</a>
+													</li>
+													<li>
+														<a href="" ng-click="goToPage('joblist')">Jobs</a>
+													</li>
+												</ul>
+											</li>
+											<li><a href="" ng-click="goToPage('profile')">Profile</a></li>
+											
+											
+										</ul>
+									</div>
+								</nav>
+								<a class="tg-btn tg-btnpostanewjob" href="" ng-click="goToPage('login')">Account</a>
+								<a class="tg-btn tg-btnpostanewjob" href="" ng-click="goToPage('postjob')">Add New Job</a>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>

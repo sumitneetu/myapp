@@ -1,0 +1,97 @@
+ <div class="scrollable scroll_top" ui-shared-state="searchBar" >
+ <div class="scrollable-content" >
+	<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+		<main id="tg-main" class="tg-main tg-haslayout">
+			<div class="container">
+				<div class="row">
+					<div id="tg-twocolumns" class="tg-twocolumns">
+						<div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 pull-right">
+							<div class="row">
+								<div id="tg-content" class="tg-content">
+									<div class="tg-jobdetailing">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="jobs.length != 0">
+											<nav class="tg-pagination">
+												<ul>
+													<li class="tg-prevpage" ng-class="{disabled:pager.currentPage === 1}"><a href="" ng-click="setPage(pager.currentPage - 1)"><i class="fa fa-angle-left"></i></a></li>
+													<li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}"><a href=""  ng-click="setPage(page)">{{page}}</a></li>
+													<li class="tg-nextpage" ng-class="{disabled:pager.currentPage === pager.totalPages}"><a href="" ng-click="setPage(pager.currentPage + 1)"><i class="fa fa-angle-right"></i></a></li>
+												</ul>
+											</nav>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											
+												<div class="row" ng-repeat="job in jobs track by $index">
+													<h3 class="col-xs-12 col-sm-12 col-md-12 col-lg-12 jobHeading"><a href="" ng-click="goToJobDetail(job.id)">{{job.job_title}}</a></h3>
+													<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-left-0">
+													<span>{{job.paytype==1 ? 'Fixed-Price' : 'Hourly'}}</span> 
+													- <span>
+													{{job.exp_level==1 ? 'Entry ($)' : ''}}
+													{{job.exp_level==2 ? 'Intermediate($$)' : ''}} 
+													{{job.exp_level==3 ? 'Expert ($$$)' : ''}}</span> 
+													<span ng-if="job.paytype==1">- Est. Budget: ${{job.project_budget}} </span>- Posted {{job.created}}
+													
+													</span>
+													<p  class="JobParagraph"> 
+													<b>Description: </b>{{job.job_description}} 
+													 </p>
+													 <p class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-left-0"> 
+													 <b>Skills:</b> 
+													 <a class="tg-tag tg-featuredtag" ng-repeat="skil in job.skillneeded track by $index"  href="" ng-click="goToPage('jobdetail')">{{skil.skill_name}} </a>
+													 
+													 </p>
+													
+												</div>
+												
+												
+												
+														
+															
+														
+													
+												
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-left">
+							<aside id="tg-sidebar" class="tg-sidebar">
+								<form class="tg-themeform tg-formrefinesearch">
+									<fieldset>
+										<h4>Filter By Categories</h4>
+										
+										<div class="tg-checkboxgroup"  >
+											<span class="" ng-repeat="cat in categories">
+												<input type="checkbox" name="category[]" ng-model="category" id="{{cat.category_name}}"  value="{{cat.category_name}}" ng-checked="false" style="z-index:999999;float:left;margin-right:10px;">
+												<label for="{{cat.category_name}}">{{cat.category_name}}</label>
+											</span>
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<button class="tg-btn" type="submit">apply</button>
+										<button class="tg-btn" type="reset">reset</button>
+									</fieldset>
+								</form>
+							</aside>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		
+		<!-- End listing -->
+		
+			<div ng-include="'templates/footer.html'"></div>	
+		<!--************************************
+				Footer End
+		*************************************-->
+	</div>
+	<!--************************************
+			Wrapper End
+	*************************************-->
+	</div>
+	</div>

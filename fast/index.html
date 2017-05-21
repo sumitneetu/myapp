@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>luis</title>
+         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"> 
+         <link href="css/jquery-ui.css" rel="stylesheet"/>
+ 		<link rel="stylesheet" href="css/stylesheet.css" media="all">
+		<link rel="stylesheet" href="css/jquery.mobile.datepicker.css" >
+		<script src="cordova.js" type="text/javascript"></script>
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>		
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script src="js/datepicker.js"></script>
+		<script src="js/jquery.mobile.datepicker.js"></script>
+		<script type="text/javascript" src="js/PushNotification.js"></script>	
+		<script src="js/chat1.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/paybill_transferfund.js"></script>
+		<script src="js/transfer_fund.js"></script>		
+		
+       <script>
+            $(document).on("mobileinit",function() {
+			//$.mobile.loading("hide");
+			//$(".ui-icon-loading").hide();
+                $.mobile.autoInitializePage = false;
+				//$.mobile.autoInitializePage = true;
+			}); 
+
+/*			$(document).ready(function(){
+			setInterval(function(){
+			chatRefresh();
+			}, 5000);
+			}); */
+	</script>
+</head>
+<body onload="onLoad()">
+
+<div id="note" class="wd100p">
+        <div id="push_notification" class="txtshadow fl" style="font-size:16px;padding-top:10px;width:87%;">
+        </div>
+        <div class="close_div" id="close" style="font-size:16px;margin-left:10px;width:12%;line-height: 49px;margin-top: -40px;">
+             <a href="#"  class="ui-icon-delete  ui-btn-icon-right ui-button-icon-only"></a>
+        </div>      
+   </div>
+  <script>
+   close = document.getElementById("note");
+   close.addEventListener('click', function() { 
+     note = document.getElementById("note");
+     note.style.display = 'none';
+   }, false);
+ </script>
+
+
+<div data-role="page" id="loginpage">
+	<div data-role="main" class="mainCon ui-content">
+		<div class="loginImg"><img src="img/logo2_1000.png" alt=""></div>
+		<div class="loginHd">Welcome User Login</div>
+		<div class="loginBox">
+			<div class="arrow"></div>
+			<div class="loginField"><input type="tel" placeholder="Enter mobile no." id="txtmobileno" maxlength="15" class="loginInput"></div>
+			<div class="loginField"><input type="password" id="txtpaswrd" class="loginInput" placeholder="Password"></div>
+			<div class="keepMeLogin" id="lognchk"><label id="divkplogn"><input name="" cType="chkrecord" type="checkbox" value="0" id="keeplogn"> Keep Me Login</label></div>
+			<div class="fp" style="color:#000" id="frgotpswrd"><a href="#" style="color:#000;font-size:12px;">Forgot Password?</a></div>
+			<div class="clr"></div>
+		</div>
+		<div class="btnBox clearfix"><button class="loginBtn" id="btnlogin">Login</button><button class="caBtn" id="btncreatlogin" >Create Account?</button></div>
+	</div>
+</div>
+<div data-role="page" id="serviceprovider">
+            <div data-role="header" class="headerblck" id="" data-position="fixed" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl mt5 ml20 wd10p">
+                      <!--  <img class="fl" alt="" style="height:40px; margin: 5px;" src="" />  -->
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:43px;" alt=""></div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+			<div data-role="navbar" style=" margin-top: -1px !important;">
+            <ul>
+				<li><a href="#" data-inline="true" id="" >Recharge Card</a></li>
+                <li><a href="#" data-inline="true" id="addcreditt" >PayBill</a></li>
+                <li><a href="#" data-inline="true" id="trnsfrcreditt" >Transfer Fund</a></li>
+            </ul>
+        </div>
+	<div data-role="main" class="mainCon">
+		<!--<div class="divheader" style="margin:10px 0px 5px 0px;">
+			<div class="back"><a href="#"><!-- <img src="img/bell.png" alt=""> --></a></div>
+			<!-- <div class="notification" id="bcktologn"><a href="#"><img src="img/logout.png" alt=""></a></div> -->
+			<!-- <div class="hd">Service Providers</div> 
+		</div>-->
+		<div data-role="panel" id="overlayPanel" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+			
+			
+		<section class="midCon" style="margin:-18px 0px -50px 0px !important;">
+			<div class="providerList" style="padding: 0 4% !important;">
+			 <div class="invite_friends">
+				<ul id="SrvcproviderList">
+				</ul>
+			 </div>
+			</div>
+			<!-- <div align="center"><button class="proceedBtn txtshadow" id="proceed">Proceed</button></div> -->
+		</section>
+		<footer>
+			<div class="inviteFriend" id="invtfrnd_srvcprovdrPg"><a color="#000">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()" id="myordr_srvcprovdrPg"><a color="#000">Contact Sales Rep</a></div>
+		</footer>
+	</div>
+</div>
+
+<div data-role="page" id="registerpage">
+<!-- 	<div data-role="header" class="headerblck" id="" style="height: 70px;">
+        <div class="fl wd100p mt20">
+			<div class="fl ml10 wd20p">
+				<img class="fl" alt="" style="height:40px; margin: 5px;" src="img/icon.png" />
+			</div>
+            <div class="fl wd50p mt5 ml10 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="width:100%;height:45px;" alt=""> </div>
+			<div class="fr wd20p">
+            </div>
+          </div>
+      </div> -->
+<!-- 		<div data-role="panel" id="overlayPanel1" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt=""> Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt=""> Change Password</a></li>
+					
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt=""> Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt=""> My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt=""> Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt=""> Logout</a></li>
+				</ul>
+		</div> -->
+		<div data-role="popup" data-dismissible="false" id="acceptpopup" data-history="false" data-theme="b">
+                    <p class="ml5">
+                        Wants to read/skip Terms and Conditions. 
+                    </p>
+                    <a href="#" id="readit" data-rel="submit" data-theme='a' class="ui-btn ml10 btnColor ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-check ui-btn-icon-right" data-textonly="false" data-textvisible="true">Read</a>
+                    <a href="#" id="skip" data-rel="submit" data-theme='a' class="ui-btn ui-btn-inline btnColor ui-shadow ui-corner-all ui-btn-a ui-icon-check ui-btn-icon-right fr" data-textonly="false" data-textvisible="true">Skip</a>
+        </div>
+<div class="mainCon">	
+	<div class="loginImg" style=""><img src="img/logo2_1000.png" alt=""></div>
+    <div class="loginHd" style="padding:0px">Welcome User Register Here</div>
+	<section class="midCon" style="bottom:10px !important;">
+			<div class="providerList" style="height:100% !important; margin:0px 0 10px !important;">
+			 <div class="">
+			     <div class="loginBox">
+    	<div class="arrow"></div>
+		<div class="loginField"><input type="text" id="txtfirstname" placeholder="First name" class="loginInput"></div>
+		<div class="loginField"><input type="text" id="txtlastname" placeholder="Last name" class="loginInput"></div>
+        <div class="loginField"><input type="tel" id="txtregmobileno" placeholder="Enter mobile number" class="loginInput" maxlength="15"></div>
+		<div class="loginField"><input type="email" id="txtregemail_id" class="loginInput" placeholder="Email"></div>
+        <div class="loginField"><input type="password" id="txtregpaswrd" class="loginInput" placeholder="Password"></div>
+        <div class="loginField"><input type="password" id="txtregpaswrdconfrm" class="loginInput" placeholder="Repeat password"></div>
+		<div class="loginField"><input type="text" id="refferby" class="loginInput" placeholder="Enter reffer code"></div>
+        <div class="keepMeLogin" id="accpttrmcndtn"><label id="divkpacpttrmcondtion" style="color:#444444;font-size:12px;"><input name="" cType="chkbx" type="checkbox" value="0" data-min="true"> Accept Terms and Conditions</label></div>
+        <div class="clr"></div>
+    </div>
+	<div class="btnBox clearfix"><button class="loginBtn" id="btncreatAcnt">Create Account?</button><button class="caBtn" id="bckloginpg" >Login</button></div>
+<!-- 				<ul id="SrvcproviderList">
+				</ul> -->
+			 </div>
+			</div>
+		</section>
+<!--     <div class="loginBox">
+    	<div class="arrow"></div>
+		<div class="loginField"><input type="text" id="txtfirstname" placeholder="First name" class="loginInput"></div>
+		<div class="loginField"><input type="text" id="txtlastname" placeholder="Last name" class="loginInput"></div>
+        <div class="loginField"><input type="number" id="txtregmobileno" placeholder="Enter Primary Mobile Number" class="loginInput"></div>
+		<div class="loginField"><input type="email" id="txtregemail_id" class="loginInput" placeholder="Email Id"></div>
+        <div class="loginField"><input type="password" id="txtregpaswrd" class="loginInput" placeholder="Password"></div>
+        <div class="loginField"><input type="password" id="txtregpaswrdconfrm" class="loginInput" placeholder="Repeat Password"></div>
+		<div class="loginField"><input type="text" id="refferby" class="loginInput" placeholder="Please enter reffer code"></div>
+        <div class="keepMeLogin" id="accpttrmcndtn"><label id="divkpacpttrmcondtion" style="color:#444444;font-size:12px;"><input name="" cType="chkbx" type="checkbox" value="0" data-min="true"> Accept Terms and Condition</label></div>
+        <div class="clr"></div>
+    </div>
+	<div class="btnBox clearfix"><button class="loginBtn" id="btncreatAcnt">Create Account?</button><button class="caBtn" id="bckloginpg" >Login</button></div> -->
+</div>
+</div>
+
+<div data-role="page" id="voucherlistpage">
+            <div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bcktosrvcprovidrpage" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel2"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="panel" id="overlayPanel2" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<div class="mainCon">
+		<div class="divheader">
+			<!-- <div class="back" id="bcktosrvcprovidrpage"><a href="#"><img src="img/back.png" alt=""></a></div> -->
+			<div class="notification"><a href="#"><!-- <img src="img/bell.png" alt=""> --></a></div>
+			<div class="hd">Voucher </div>
+		</div>
+		<section class="midCon">
+			<div class="coupanCon clearfix" id="coupandiv">
+			</div>
+		</section>
+		<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div class="inviteFriend" id="invitfrnd_vochrlstPg"><a href="#">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()" id="myordr_vochrlstPg"><a href="#">Contact Sales Rep</a></div>
+		</footer>
+	</div>
+</div>
+<div data-role="page" id="invitefrndPg">
+            <div data-role="header" class="headerblck" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" id="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckInvtFrnd" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel3"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="panel" id="overlayPanel3" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<div class="mainCon">
+		<div class="divheader">
+			<!-- <div class="back" id="bckInvtFrnd"><a href="#"><img src="img/back.png" alt=""></a></div> -->
+			<div class="notification"><a href="#"><!-- <img src="img/bell.png" alt=""> --></a></div>
+			<div class="hd" id="forfrnds">Invite Friends</div>
+		</div>
+		<section class="midCon" style=" margin-bottom: -40px !important;">
+			<div class="providerList" style="height: 100% !important; margin: 0 !important;">
+				<div class="invite_friends">
+					<ul>
+					<!--<li><div class="left"><img src="img/yahoo.png" alt=""></div><div class="right"> <label>Yahoo</label></div><a href="#" class="fr mid"><img src="img/right.png" alt=""></a><div class="clearfix"></div></li>-->
+					<li onclick="shareViaSMS()"><img src="img/sms.png" alt=""> <label style="margin:-50px 0px 20px 100px">SMS</label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li onclick="shareViaEmail()"><img src="img/gmail.png" alt=""> <label style="margin:-50px 0px 20px 100px">Gmail</label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li onclick="shareMessageViaWhatsApp()"><img src="img/phone.png" alt=""><label style="margin:-50px 0px 20px 100px"> Whatsapp</label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li><img src="img/blackberry.png" alt=""><label style="margin:-50px 0px 20px 100px"> Blackberry </label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li class="last" onclick="shareMessageAndImageViaFacebook()"><img src="img/facebook.png" alt=""><label style="margin:-50px 0px 20px 100px"> Facebook </label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<!-- <li class="last" onclick="fasttopfrnds()"><img src="img/72.png" alt=""><label style="margin:-50px 0px 20px 100px"> Fasttopups </label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li> -->
+				</ul>
+				</div>
+			</div>
+			
+		</section>
+		
+	</div>
+</div>
+<div data-role="page" id="myorderPage">
+<div data-role="header" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" class="headerblck divheader1" id="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckordrhistry" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel4"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+<!-- 		<div class="divheader" style="background-color:#fea82a">
+			<div class="hd">Card History</div>
+		</div> -->
+		<div class="wd100p fl" style="background-color:#fea82a;margin:-6px 0px 0px 0px">
+		<div class="filter wd50p fl" ><a href="#"><img src="img/filter.png" alt=""> Filter</a>
+		   <div class="filter_box">
+			<ul>
+			 <li><a>Service Provider <img src="img/caret1.png" alt=""></a>
+			  <ul class="submenu2" id="filtersvcprovdr">
+			  </ul>
+			 </li>
+			 <li><a>Price <img src="img/caret1.png" alt=""></a>
+			  <ul class="submenu2">
+			   <li><a onclick="filterorder('',100,'')">&#8358 100</a>
+			   <li><a onclick="filterorder('',200,'')">&#8358 200</a>
+			   <li><a onclick="filterorder('',400,'')">&#8358 400</a>
+			   <li><a onclick="filterorder('',500,'')">&#8358 500</a>
+			   <li><a onclick="filterorder('',750,'')">&#8358 750</a>
+			   <li><a onclick="filterorder('',1000,'')">&#8358 1000</a>
+			   <li><a onclick="filterorder('',1500,'')">&#8358 1500</a>
+			  </ul>
+			 </li>
+			 <li width="100%"><div style="width:80%;margin: 2px 2px 0px 0px;float:left;"><input type="text" data-role="date" data-date-format="yy-mm-dd" id="filterdate" placeholder="yyyy-mm-dd"></div><div style="width:16%;margin: 2px 2px 0px 0px;float:right;color:#fff;border:#fff solid 1px;" onclick="filterorder('','','')"><img src="img/search_icon.png" alt=""></div></li>
+
+			</ul>
+		   </div>
+		</div><div class="wd50p fr" style="margin:-33px 10% 0px 0px;color:#fff; font-size:20px;">Card History</div>
+		</div>
+ </div>
+		<div data-role="panel" id="overlayPanel4" data-display="overlay" data-position="right" data-position-fixed="true" class="divheader1">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+    <div role="main" class="ui-content">
+			        <div data-role="popup" data-dismissible="true" id="orderpopup" data-history="false" data-theme="b">
+                    <p class="ml5">
+                        Here you can Load the recharge pin or send it to a friend.
+                    </p>
+					<p class="ml5" id="copncod">
+                        
+                    </p>
+                    <a href="#" id="loadcopn" data-rel="submit" data-theme='a' class="ui-btn ml10 btnColor ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-check ui-btn-icon-right" data-textonly="false" data-textvisible="true">Load</a>
+                    <a href="#" id="snd_tofrnd" data-rel="submit" data-theme='a' class="ui-btn ui-btn-inline btnColor ui-shadow ui-corner-all ui-btn-a ui-icon-check ui-btn-icon-right fr" data-textonly="false" data-textvisible="true">Send</a>
+                </div>
+	<div class="">
+				<!-- <section class="midConn"> -->
+				<div class="providerList">
+						<ul class="" data-role="listview" id="list" style="padding: 10px 0 0 !important;">
+						    <!-- <li><div class="fl wd100p"><div style="width:40%;margin-left:2%;float:left;font-weight:bold">MTNL Nigeria</div><div style="width:10%;margin-left:5%;float:left;font-weight:bold">₦100</div><div style="width:30%;margin-right:2%;background-color:#40ff00;color:#000;float:right;text-align:center;" onclick="popup(&quot;+ data[key].secure_coupon_code +&quot;,&quot;+data[key].dial_code+&quot;,&quot;+data[key].id+&quot;)" class="txtshadow">View Pin</div></div>
+<div class="fl wd100p mt20"><div style="width: 40%; float: left; margin: 2% 0% 0% 2%;">20/04/2016</div><div style="width:10%;margin-left:9%;float:left;"><div class=" ui-checkbox"><input type="checkbox"></div></div><div class="txtshadow" onclick="popup(&quot;+ data[key].secure_coupon_code +&quot;,&quot;+data[key].dial_code+&quot;,&quot;+data[key].id+&quot;)" style="width: 30%; float: right; margin: 0% 2% 0% 0%;">Mark Used<div class=" ui-checkbox"><input type="checkbox" style="margin: -22% 0% 0% 78%;" name="usedcpn"></div></div></div><div></div></li> -->
+						</ul>
+<!-- 						<ul class="top_10_name" data-role="listview" id="list1">
+						</ul> -->
+				</div>
+    </div>
+	<!-- </section> -->
+		 <!-- <div data-role="footer" data-position="fixed" class="divheader1" >
+		 <div class=""><button class="loginBtn" id="">Send All</button><button class="caBtn" id="" >Load</button></div> -->
+<!-- 			<div class="inviteFriend" id="invtfrnd_myordrPg"><a href="#">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()"><a href="#">Chat</a></div> -->
+		<!-- </div> -->
+		<footer style="background-color:#fea82a" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div align="center"><button class="loginBtn" style="float:none !important;" id="sndallcards">Send All</button></div>
+		</footer>
+</div>
+</div>
+<div data-role="page" id="voucherPayPage">
+            <div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bcktovuchrlstPg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel5"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="panel" id="overlayPanel5" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<div class="mainCon">
+		<div class="divheader">
+			<div class="hd">Voucher </div>
+		</div>
+		<section class="midCon">
+			<div class="vocherDet">
+				<div class="arrow"></div>
+				<div class="vocherBox">Cost of the Voucher:<span class="big">&#8358 <span id="vouchercost"></span></span></div>
+				<div class="vocherBox">Mobile No.:<span id="PrmyNo"></span></div>
+				<!-- <div class="vocherBox">Voucher No./code <span id="cupnCode">FS2560</span></div> -->
+				<div class="vocherBox">Quantity:<span id=""><input type="number" id="cupnquntity" value="1"></span></div>
+				<!-- <div class="vocherBox"><span style="margin:0px 0px 0px 0px">Quantity</span> <span><input type="number" id="cupnquntity"></span></div> -->
+			</div>
+			    <div data-role="main" class="wd100p mt40">
+                    <div class="wd50p fl" id="payfromCredit">
+                        <input class=" ml10" type="radio" name="pay" value="0">
+                        <div style="margin-top:-8px;color:#fff;" class="ml40 txtshadow">Pay from Wallet</div>
+                    </div>
+                    <div class="fr wd50p tal txtshadow">                        
+						<input type="radio" name="pay" value="1" checked="checked">
+                        <div style="margin-top:-8px;color:#fff;" class="ml40 txtshadow">Pay with ATM Card</div></div>
+                </div>
+<!-- 			<div class="payradiobtn" style=""><label><input name="pay" type="radio" value="">Pay from card</label></div>
+			<div class="payradiobtn" style=""><label class="fl"><input name="pay" type="radio" value=""> Pay from wallet</label></div> -->
+			<div class="vocherBot">
+			<!-- <div class="btnBox clearfix" align="center"><button class="loginBtn" id="paynow">Pay Now</button></div> -->
+			<div class="btnBox clearfix" align="center" style="padding: 20px 0 !important;"><button class="loginBtn" style="float:none !important;" id="paynow">Pay Now</button></div>
+<!-- 				<div ><button id="" class="loadNow">Pay Now</button></div>
+				<div><input type="text" class="loadInput"></div>
+				<div><button class="sendBtn">Send To Friend</button></div> -->
+			</div>
+		</section>
+<!-- 		<form name="form1" action='https://webpay.interswitchng.com/paydirect/pay' method="post">
+			<input name="product_id" type="hidden" id="hdnproduct_id" value='5607' />
+			<input name="pay_item_id" type="hidden" id="hdnpay_item_id" value='101' />
+			<input name="amount" type="hidden" id="hdnamount" value='150000' />
+			<input name="currency" type="hidden" id="hdncurrency" value='566' />
+			<input name="txn_ref" type="hidden" id="hdntxn_ref" value=' ' />
+			<input name="cust_id" type="hidden" id="hdncust_id" value=' ' >
+			<input name="hash" type="hidden" id="hdnhash" value='' />
+			<!-- <input type="submit" value="Submit" style="width:0;visibility:hidden;" id="submitform"> 
+			<input name="site_redirect_url" type="hidden" id="hdnsite_redirect_url" value=''/>
+			<input type="submit" value="Submit" style="width:0;visibility:hidden;" id="submitform">	
+		</form> -->
+		<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="background-color:#fea82a;z-index:100;">
+			<div class="inviteFriend" id="invtfrnds_vochrPayPg"><a href="#">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()" id="myOrdrs_vochrPayPg"><a href="#">Contact Sales Rep</a></div>
+		</footer>
+	</div>
+</div>
+<div data-role="page" id="forgotpage">
+<!--             <div data-role="header" class="headerblck" id="" style="height: 70px;">
+                <div class="fl wd100p mt20">
+                    <div class="fl ml10 wd20p">
+                        <img class="fl" alt="Profile Pic" id="btnfrgotloginn" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd50p mt5 ml10 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="width:100%;height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                    </div>
+                </div>
+            </div> -->
+<!-- 		<div data-role="panel" id="overlayPanel6" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt=""> Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt=""> Change Password</a></li>
+					
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt=""> Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt=""> My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt=""> Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt=""> Logout</a></li>
+				</ul>
+		</div> -->
+	<div class="mainCon">
+		<div class="loginImg"><img src="img/logo2_1000.png" alt=""></div>
+		<div class="loginHd">Forgot Password</div>
+		<div class="loginBox">
+			<div class="arrow"></div>
+			<div class="loginField"><input type="number" placeholder="Enter mobile no." id="txtfrgotmobileno" class="loginInput"></div>
+			<div class="loginField"><input type="number" id="txtfrgotcnfno" class="loginInput" placeholder="Re-enter mobile no."></div>
+			<div class="clr"></div>
+		</div>
+			<!-- <div align="left"><button class="proceedBtn txtshadow" style="margin:30px 0px 0px 0px !important;" id="snd_pswrd">Send</button></div> -->
+		<div class="btnBox clearfix"><button class="loginBtn" id="btnsendforgot">Send</button><button class="caBtn" id="btnfrgotlogin" >Login</button></div>
+	</div>
+</div>
+<div data-role="page" id="updatepasswordpage">
+            <div data-role="header" class="headerblck" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" id="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckfrmupdatepassword" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel7"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="panel" id="overlayPanel7" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<div class="mainCon">
+		<!-- <div class="loginImg"><img src="img/logo2_1000.png" alt=""></div> -->
+		<div class="loginHd">Update Password</div>
+		<div class="loginBox">
+			<div class="arrow"></div>
+			<div class="loginField"><input type="password" placeholder="Enter old password" id="txtcrntPswrd" class="loginInput"></div>
+			<div class="loginField"><input type="password" id="txtnewPswrd" class="loginInput" placeholder="Enter new password"></div>
+			<div class="loginField"><input type="password" id="txtconfrmnewPswrd" class="loginInput" placeholder="Confirm new password"></div>
+			<div class="clr"></div>
+		</div>
+			<div class="btnBox clearfix"><button class="loginBtn" id="btnupdatePswrd">Update</button><button class="caBtn" id="cancelupdatepassword" >Return</button></div>
+			<!-- <div align="left" class="mt40"><button class="proceedBtn txtshadow" id="btnupdatePswrd">Update</button></div> -->
+		<!-- <div class="btnBox clearfix"><button class="loginBtn" id="btnupdatePswrd">Update</button><button class="caBtn" id="btnfrgotlogin1" >Login</button></div> -->
+	</div>
+</div>
+<div data-role="page" id="helpPage">
+	<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bcktohelpPg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel8"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="panel" id="overlayPanel8" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<section class="midCon">
+		<div class="mid_help">
+			<div class="divheader">
+				<!-- <div id="bcktohelpPg" class="back"><a href="#" class="ui-link"><img alt="" src="img/back.png"></a></div> -->
+				<div class="notification"><a href="#" class="ui-link"><!-- <img alt="" src="img/bell.png"> --></a></div>
+				<div class="hd">Help </div>
+			</div>
+			<div data-role="collapsible-set" id="collapsediv">
+			</div>
+<!-- 			<div data-role="collapsible-set" data-content-theme="d" id="set">
+				<div data-role="collapsible" id="set1" data-collapsed="true">
+					<h3>Section 1</h3>
+					<p>I'm the collapsible content.</p>
+				</div>
+			</div> -->
+<!--					<ul id="helpqueAns">
+ 						<li>
+							<div class="help_question" id=""></div>
+							<div class="help_answer"><p></p></div>
+						</li>
+						<li>
+							<div class="help_question">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+							<div class="help_answer"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p></div>
+						</li>
+						<li>
+							<div class="help_question">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+							<div class="help_answer"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p></div>
+						</li>
+						<li>
+							<div class="help_question">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+							<div class="help_answer"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p></div>
+						</li>
+						<li>
+							<div class="help_question">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+							<div class="help_answer"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p></div>
+						</li> 
+					</ul> -->
+			</div>
+		
+		
+	</section>
+	<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div class="inviteFriend" id="invtfrnd_helpPg"><a href="#">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()" id="myordr_helpPg"><a href="#">Contact Sales Rep</a></div>
+		</footer>
+</div>
+<div data-role="page" id="top10Page">
+		<div data-role="header" class="headerblck" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" id="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bcktop10Pg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel9"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+				</div>
+		<div data-role="panel" id="overlayPanel9" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+		<section class="midCon">
+			<div class="mid_help">
+				<div class="divheader wd100p fl">
+<!-- 					<div id="bcktop10Pg" class="back"><a href="#" class="ui-link"><img alt="" src="img/back.png"></a></div>
+					<div class="notification"><a href="#" class="ui-link"></a></div> -->
+					<div class="hd wd60p fr" style="text-align:left !important;">Top10 </div>
+				<!-- </div> -->	
+		<div class="filter wd20p fl" style="margin:20px 0px 0px -20px"><a href="#"><img src="img/filter.png" alt=""> Filter</a>
+		   <div class="filter_box">
+			<ul>
+			 <li><a>Airtel Nigeria <img src="img/caret1.png" alt=""></a>
+			  <ul class="submenu2">
+			   <li><a onclick="filterorderr(1,100)">&#8358 100</a> 
+			   <li><a onclick="filterorderr(1,200)">&#8358 200</a>
+			   <li><a onclick="filterorderr(1,400)">&#8358 500</a>
+			   <li><a onclick="filterorderr(1,500)">&#8358 1000</a>
+			  </ul>
+			 </li>
+			 <li><a>MTN Nigeria<img src="img/caret1.png" alt=""></a>
+			  <ul class="submenu2">
+			   <li><a onclick="filterorderr(6,100)">&#8358 100</a>
+			   <li><a onclick="filterorderr(6,200)">&#8358 200</a>
+			   <li><a onclick="filterorderr(6,400)">&#8358 400</a>
+			   <li><a onclick="filterorderr(6,500)">&#8358 750</a>
+			   <li><a onclick="filterorderr(6,1500)">&#8358 1500</a>
+			  </ul>
+			 </li>
+			 <li><a>Glo Nigeria<img src="img/caret1.png" alt=""></a>
+			   <ul class="submenu2">
+			   <li><a onclick="filterorderr(7,100)">&#8358 100</a>
+			   <li><a onclick="filterorderr(7,200)">&#8358 200</a>
+			   <li><a onclick="filterorderr(7,500)">&#8358 500</a>
+			   <li><a onclick="filterorderr(7,1000)">&#8358 1000</a>
+			  </ul>
+			 <li><a>Etisalat Nigeria<img src="img/caret1.png" alt=""></a>
+			   <ul class="submenu2">
+			   <li><a onclick="filterorderr(8,100)">&#8358 100</a>
+			   <li><a onclick="filterorderr(8,200)">&#8358 200</a>
+			   <li><a onclick="filterorderr(8,500)">&#8358 500</a>
+			   <li><a onclick="filterorderr(8,1000)">&#8358 1000</a>
+			  </ul>
+			 </li>
+			</ul>
+		   </div>
+		</div>
+		</div>
+					<div class="providerList">
+						<ul class="top_10_name" id="top10list">
+<!-- 							<li><div>User mobile No.:<span> 123456</span><div><div>Service Provider:<span> Airtel</span><div><div>Amount:<span> 123456</span><div>
+							</li>
+							<li><div>User mobile No.:<span> 123456</span><div><div>Service Provider:<span> Airtel</span><div><div>Amount:<span> 123456</span><div>
+							</li> --> 
+
+						</ul>
+					</div>
+				</div>
+			
+			
+		
+		<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+				<div class="inviteFriend" id="invtfrnd_top10Pg"><a href="#">Invite Friends</a></div>
+				<div class="sep"><span></span></div>
+				<div class="myOrder" onclick="chat_user_list()" id="myordr_top10Pg"><a href="#">Contact Sales Rep</a></div>
+			</footer>
+		
+</div>
+<div data-role="page" id="chatPage">
+	<div data-role="header" class="headerblck" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" id="" style="height: 70px;">
+                  <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bcktochatPg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel10"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="panel" id="overlayPanel10" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<section class="midCon">
+		<div class="mid_help">
+			<div class="divheader">
+				<!-- <div id="bcktochatPg" class="back"><a href="#" class="ui-link"><img alt="" src="img/back.png"></a></div> -->
+				<div class="notification" onclick="chat_user_list()"><a href="#" class="ui-link" ><img src="img/chat.png" alt=""></a></div>
+				<div class="hd" id="chat_username">Contact Sales Rep</div>
+			</div>
+				<div class="chat_box clearfix" id="chat_box">
+						<!-- <div class="chat_rgt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div>
+						<div class="chat_lft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div>
+						<div class="chat_rgt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div>
+						<div class="chat_lft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div>
+						<div class="chat_rgt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div>
+						<div class="chat_lft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div> -->
+					
+				</div>
+			</div>
+		
+		
+	</section>
+		<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+<!-- 			<div class="inviteFriend" id=""><a href="#contactlistpanel">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" id="myordr_chatPg"><a href="#">My Order</a></div> -->
+					<div class="chat_textbox mb10 wd100p" style="background-color:#fff !important;height:45px">
+					<div class="wd85p fl">
+						 <textarea name="textchat" class="" id="chat_msg" placeholder="Type Message .."></textarea></div>
+					<div class="wd30 fl"><a href="#" class="send_chat"><img src="img/send.png" alt="" style="margin:-9px 0px 0px 0px;" onclick="chatSubmit()"></a></div>
+					</div>
+		</footer>
+	
+</div>
+
+
+<!-- Start chat user list -->
+<div data-role="page" id="chatPage_user">
+	<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckfrmchatPg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel11"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="navbar" data-iconpos="left" style=" margin-top: -1px !important;">
+            <ul>
+				<!-- <li><a href="#" data-inline="true" data-icon="refresh" id="contactfrndlst" >Contact</a></li> 
+				<li><a href="#" data-inline="true" data-icon="refresh" id="refreshcontact" >Refresh</a></li>
+                <li><a href="#" data-inline="true"  data-icon="comment" id="chatfrndlst" >Chat</a></li> -->
+            </ul>
+        </div>
+		<div data-role="panel" id="overlayPanel11" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+
+	<section class="midCon">
+		<div class="mid_help">
+			<!--<div class="divheader">
+				<div id="bckfrmchatPg" class="back"><button class="loginBtn" id="">Contacts</button><a href="#" class="ui-link"><img alt="" src="img/back.png"></a></div>
+				<div class="notification" onclick="chat_user_list()"><a href="#" class="ui-link" ><img src="img/chat.png" alt=""></a></div>
+				<div class="hd" id="chat_username">Chat</div> 
+			</div>-->
+				<div class="chat_user_list clearfix" id="chat_box">
+						 <ul data-role="listview" id="friend_chatlist">
+						<!-- 	<li onclick="chatpagefunc(123456,987654321)"><a href="#">Admin</a></li>
+							<li onclick="chatpagefunc(987654321,123456)"><a href="#">User 1</a></li> -->
+						</ul>
+					
+				</div>
+<!-- 				<div class="chat_user_list clearfix" id="contactlist">
+						 <ul data-role="listview" id="phonecontactlist">
+						</ul>					
+				</div> -->
+			</div>		
+	</section>
+		<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div class="inviteFriend" id="invtfrnd_for_chat" ><a href="#">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()" id="invtfrnd_for_order"><a href="#">Contact Sales Rep</a></div>
+		</footer>
+</div>
+
+<!-- End chat user list -->
+
+<div data-role="page" id="walletpage">
+	<div data-role="header" class="headerblck" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bcktowalletPg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:43px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel12"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+      </div>
+	    <div id="walletnavbar" data-role="navbar">
+            <ul>
+                <li><a href="#" id="addcredit" style="height:50px;">Fund Wallet</a></li>
+                <li><a href="#" id="trnsfrcredit" style="height:50px;">Transfer Credit</a></li>
+                <li><a href="#" onclick="myaccountpagefunc()" id="" style="height:50px;">Account Pin</a></li>
+            </ul>
+        </div>
+		<div data-role="panel" id="overlayPanel12" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<section class="midCon">
+		<div class="mid_help">
+			<!--<div class="divheader">
+			 	<div id="bcktowalletPg" class="back"><a href="#" class="ui-link"><img alt="" src="img/back.png"></a></div>
+				<div class="notification"><a href="#" class="ui-link"></a></div>
+				<div class="hd">Payment </div> 
+			</div>-->
+			<div class="credits">
+				<div class="aval_credits"><span>Available Credits:</span><span id="creditamt"></span></div>
+				<!-- <div class="aval_credits"><span>Payable Credits:</span> $200</div> -->
+				<!-- <div align="center Payment_submit"><input type="button" id="addcredit" class="btn_submit" value="Add Credit"></div>
+				<div align="center Payment_submit"><input type="button" id="trnsfrcredit" class="btn_submit" value="Transfer Credit"></div> -->
+				<!-- <div class=""><button class="" id="wallethistory">Wallet History</button></div> -->
+				<div class=""><button class="loginBtn" style="float: none !important; margin-left:26%;" id="wallethistory">Wallet History</button></div>
+			</div>
+				
+			</div>
+	</section>
+	<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div class="inviteFriend" id="invtfrnd_walletPg"><a href="#">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()" id="myordr_walletPg"><a href="#">Contact Sales Rep</a></div>
+		</footer>
+	
+</div>
+<div data-role="page" id="transfercreditPage">
+	<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckfrmcrdtrnsfrpage" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel13"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+      </div>
+		<div data-role="panel" id="overlayPanel13" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+<div class="mainCon">	
+	<!-- <div class="loginImg"><img src="img/logo2_1000.png" alt=""></div> -->
+    <div class="loginHd">Transfer Credit</div>
+    <div class="loginBox">
+    	<div class="arrow"></div> <!--onclick="friendscontacts('trnsfrtomobileno')"-->
+        <div class="loginField"><input type="tel" maxlength="15" list="listofconcact" id="trnsfrtomobileno" placeholder="Enter Mobile Number" class="loginInput">
+			<datalist id="listofconcact">
+<!-- 			  <option value="Internet Explorer">
+			  <option value="Firefox">
+			  <option value="Chrome">
+			  <option value="Opera">
+			  <option value="Safari"> -->
+			</datalist>
+				<!-- <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#trnsfrtomobileno" class="autoocomplete" id="listofconcact">
+					<li><a href="#">Acura</a></li>
+					<li><a href="#">Audi</a></li>
+					<li><a href="#">BMW</a></li>
+					<li><a href="#">Cadillac</a></li>
+					<li><a href="#">Chrysler</a></li>
+					<li><a href="#">Dodge</a></li>
+					<li><a href="#">Ferrari</a></li>
+					<li><a href="#">Ford</a></li>
+					<li><a href="#">GMC</a></li>
+					<li><a href="#">Honda</a></li>
+					<li><a href="#">Hyundai</a></li>
+					<li><a href="#">Infiniti</a></li>
+					<li><a href="#">Jeep</a></li>
+					<li><a href="#">Kia</a></li>
+					<li><a href="#">Lexus</a></li>
+					<li><a href="#">Mini</a></li>
+					<li><a href="#">Nissan</a></li>
+					<li><a href="#">Porsche</a></li>
+					<li><a href="#">Subaru</a></li>
+					<li><a href="#">Toyota</a></li>
+					<li><a href="#">Volkswagen</a></li>
+					<li><a href="#">Volvo</a></li>
+				</ul> --></div>
+		<div class="loginField"><input type="number" id="trnsfrcreditamt" placeholder="Enter credits" class="loginInput"></div>
+		<div class="loginField"><input type="password" id="accountpin" class="loginInput" placeholder="Enter Account Pin"></div>
+        <div class="loginField"><input type="password" id="confaccountpin" class="loginInput" placeholder="Re-enter Account Pin"></div>
+        <!-- <div class="keepMeLogin"><label id="divkpacpttrmcondtion"><input name="" type="checkbox" value=""> Accept Terms and Condition</label></div> -->
+        <div class="clr"></div>
+    </div>
+	<div class="btnBox clearfix"><button class="loginBtn" id="totrnsfrcredit">Submit</button><button class="caBtn" id="btncancel" >Return</button></div>
+    <div class=""><button class="loginBtn" style="float: none !important; margin-left:26%;" id="forgot_pin">Forgot Pin</button></div>
+</div>
+</div>
+<div data-role="page" id="addcreditpage">
+	<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckfrmaddcrdtpage" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel14"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+      </div>
+		<div data-role="panel" id="overlayPanel14" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+<div class="mainCon">	
+	<!-- <div class="loginImg"><img src="img/logo2_1000.png" alt=""></div> -->
+    <div class="loginHd">Add Credit</div>
+    <div class="loginBox">
+    	<div class="arrow"></div>
+        <div class="loginField"><input type="number" id="txtcreditamt" placeholder="Enter credit amount" class="loginInput"></div>
+		<div class="loginField"><input type="number" id="txtconfrmcreditamt" placeholder="Re-enter credit amount" class="loginInput"></div>
+        <!-- <div class="keepMeLogin"><label id="divkpacpttrmcondtion"><input name="" type="checkbox" value=""> Accept Terms and Condition</label></div> -->
+        <div class="clr"></div>
+    </div>
+	<div class="btnBox clearfix"><button class="loginBtn" id="addsubmitcreditamt">Submit</button><button class="caBtn" id="btncreditcancel" >Return</button></div>
+    <!-- <div class="btnBox clearfix"><input type="button" value="Login" class="loginBtn" onClick="window.location='login.html'"><input type="button" value="Create Account?" class="caBtn" onClick="window.location='home.html'"></div> -->
+</div>
+</div>
+<div data-role="page" id="updatepinpage">
+	<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckfrmupdatepin" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel15"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+      </div>
+		<div data-role="panel" id="overlayPanel15" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+<div class="mainCon">	
+	<!-- <div class="loginImg"><img src="img/logo2_1000.png" alt=""></div> -->
+    <div class="loginHd">Change Account Pin</div>
+       <!--  <h2 class="colapsecolor txtshadow tac" style="color:#000">Change Account Pin</h2> -->
+		<div class="loginBox">
+			<div class="arrow"></div>
+			<div class="loginField"><input type="password" id="oldaccountpin" placeholder="Enter old pin" class="loginInput"></div>
+			<div class="loginField"><input type="password" id="newaccountpin" placeholder="Enter new pin" class="loginInput"></div>
+			<div class="loginField"><input type="password" id="confrmnewacntpin" placeholder="Confirm new pin" class="loginInput"></div>
+			<!-- <div class="keepMeLogin"><label id="divkpacpttrmcondtion"><input name="" type="checkbox" value=""> Accept Terms and Condition</label></div> -->
+			<div class="clr"></div>
+		</div>
+		<!-- <div class="btnBox clearfix"><button class="loginBtn" id="updateaccountpin">Submit</button></div> -->
+		<div class="btnBox clearfix"><button class="loginBtn" id="updateaccountpin">Submit</button><button class="caBtn" id="cancelupdatepin" >Return</button></div>
+		<div class=""><button class="loginBtn" style="float: none !important; margin-left:26%;" id="forgotpin">Forgot Pin</button></div>
+
+</div>
+</div>
+<div data-role="page" id="setpinpage">
+	<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckfrmsetpin" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel16"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+      </div>
+		<div data-role="panel" id="overlayPanel16" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+		<div class="mainCon">	
+			<!-- <div class="loginImg"><img src="img/logo2_1000.png" alt=""></div> -->
+			<div class="loginHd">Set Account Pin</div>
+				<!-- <h1 class="colapsecolor">Set Account Pin</h1> -->
+				<div class="loginBox">
+					<div class="arrow"></div>
+					<div class="loginField"><input type="password" id="txtacuntpin" placeholder="Enter account pin" class="loginInput"></div>
+					<div class="loginField"><input type="password" id="txtconfrmacuntpin" placeholder="Re-enter account pin" class="loginInput"></div>
+					<!-- <div class="keepMeLogin"><label id="divkpacpttrmcondtion"><input name="" type="checkbox" value=""> Accept Terms and Condition</label></div> -->
+					<div class="clr"></div>
+				</div>
+				<div class="btnBox clearfix"><button class="loginBtn" id="addaccountpin">Submit</button><button class="caBtn" id="cancelsetpin" >Return</button></div>
+		</div>
+</div>
+<!-- <div data-role="page" id="sendtofriendpage">
+	<div data-role="header" class="headerblck" id="" data-position="fixed" style="height: 70px;">
+                <div class="fl wd100p mt10">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckfrmsnd2frndpg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel17"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+      </div>
+		<div data-role="panel" id="overlayPanel17" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt=""> Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt=""> Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt=""> Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt=""> Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt=""> Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt=""> My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt=""> Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt=""> Logout</a></li>
+				</ul>
+		</div>
+		<div class="mainCon">
+			<div class="loginHd">Send to friend</div>
+					<section class="midCon">
+			<div class="providerList">
+				<div class="invite_friends">
+					<ul>
+					<li onclick="shareViaSMS1()"><img src="img/sms.png" alt=""> <label style="margin:-50px 0px 20px 100px">SMS</label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li onclick="shareViaEmail1()"><img src="img/gmail.png" alt=""> <label style="margin:-50px 0px 20px 100px">Gmail</label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li onclick="shareMessageViaWhatsApp1()"><img src="img/phone.png" alt=""><label style="margin:-50px 0px 20px 100px"> Whatsapp</label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li><img src="img/blackberry.png" alt=""><label style="margin:-50px 0px 20px 100px"> Blackberry </label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					
+					<li class="last" onclick="shareMessageAndImageViaFacebook1()"><img src="img/facebook.png" alt=""><label style="margin:-50px 0px 20px 100px"> Fackbook </label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+					<li class="last" onclick="shareMessageAndImageViaFacebook1()"><img src="img/facebook.png" alt=""><label style="margin:-50px 0px 20px 100px"> Fackbook </label><a href="#" class="fr mid" style="margin:-75px 0px 10px 100px"><img src="img/right.png" alt=""></a></li>
+				</ul>
+				</div>
+			</div>
+			
+		</section>
+		</div>
+</div> -->
+<div data-role="page" id="bankpage">
+	<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+        <div class="fl wd100p mt20">
+			<div class="fl ml10 wd20p" id="bankback">
+				<img class="fl" alt="Profile Pic" style="height:40px; margin: 5px;" src="img/back.png" />
+			</div>
+            <div class="fr wd70p ml10 txtshadow" id="go2orders" style="text-align:center;color:#000;font-size:15px;font-weight:bold; line-height: 13px;"><div class="fl mt15" id="goto"></div><div class="fr"><img alt="Profile Pic" style="height:40px; margin: 5px;" src="img/forward.png" /></div></div>
+<!-- 			<div class="fr wd20p">
+              	<!-- <a href="#"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a> -->
+				<!-- <a href="#" class="chat"><img src="img/chat.png" alt=""></a>
+            </div> -->
+          </div>
+     </div>
+<!-- 		<div class="wrapper">
+			<div class="h_iframe">
+				<iframe id="myIframe" src="" ></iframe>
+			</div>
+		</div> -->
+		<div id="my_frame">
+		<!-- 	<div class="providerList" id="plzwt">Please wait ..</div> -->
+		<!-- <iframe id="myIframe" src=""  scrolling="auto" style="height:500px; width:100%;margin-bottom:0px;padding-bottom:20px></iframe> -->
+	    <!-- <WebView id="webURL" width="100%" height="Ti.UI.FILL" ignoreSslError="true"></WebView> -->
+		</div>
+</div>
+<div data-role="page" id="affilatehstryPage">
+		<div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckaffilatehstryPg" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel18"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+				</div>
+		<div data-role="panel" id="overlayPanel18" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+		<section class="midCon">
+			<div class="mid_help">
+				<div class="divheader">
+<!-- 					<div id="bcktop10Pg" class="back"><a href="#" class="ui-link"><img alt="" src="img/back.png"></a></div>
+					<div class="notification"><a href="#" class="ui-link"></a></div> -->
+					<div class="hd" style="padding:10px 0 0 0;font-weight:bold;">Affiliate History </div>
+					<div class="hd" style="padding:5px 0 0 0;font-size:16px;">My Affiliate Code:: <span id="myaffilliatecode"></span> </div>
+				</div>					
+					<div class="providerList">
+						<ul class="top_10_name" id="affilatehstry">
+<!-- 							<li><div>Name.:<span> 9845632100</span><div><div>User mobile No.:<span> 9845632100</span><div><div>Earn Credit:<span> 250</span><div></li>
+							<li><div>User mobile No.:<span> 8546321546</span><div><div>Earn Credit:<span> 200</span><div></li>
+							<li><div>User mobile No.:<span> 9756321452</span><div><div>Earn Credit:<span> 250</span><div></li>
+							<li><div>User mobile No.:<span> 7896542365</span><div><div>Earn Credit:<span> 350</span><div></li> -->
+						</ul>
+					</div>
+				</div>
+			
+			
+		
+		<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+				<div class="inviteFriend" id="invtfrnd_affilatehstryPg"><a href="#">Invite Friends</a></div>
+				<div class="sep"><span></span></div>
+				<div class="myOrder" onclick="chat_user_list()" id="myordr_affilatehstryPg"><a href="#">Contact Sales Rep</a></div>
+			</footer>
+		
+</div>
+<div data-role="page" id="termandconditions">
+            <div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="returntotermspage" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+<!--                         <a href="#overlayPanel2"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a> -->
+                    </div>
+                </div>
+            </div>
+<data data-role="main" class="ui-content">
+		<div class="">
+			<h1 class="txtshadow tac">
+			<span>Terms and conditions</span>
+			</h1>
+		</div>
+<section class="midCn">
+<div class="providerListed">
+	<!-- <div class="innreBlog"> -->
+		<div class="blogListBox txtshadow" style="width:100%;">
+		<ul class="blogList">
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;">General</h1>
+					<p> The provision of Services to you through the Mobile App/Website is subject to your acceptance of the Agreement. By completing the Registration Form and/or by using the Mobile App/Website, you expressly agree to be bound by the terms and conditions below, the FASTTOPUPS.COM Privacy Policy, and any other terms and conditions of this Agreement.</p>
+					<p> If you object to this Agreement or any subsequent modifications to it, or become dissatisfied with your membership of the Mobile App/Website in any way, your only remedy is to immediately: </p>
+					<p> Discontinue your use of the Mobile App/Website; and Terminate your membership by notifying us in writing. </p>
+					<p> Certain words in this Agreement have the meanings set under them at the end of this webpage. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;">Membership Information</h1>
+					<p> When registering as a member of the Mobile app/Website, you must provide us with accurate, complete and up-to-date information as requested on the Registration Form. You agree that the information supplied with your Registration Form will be truthful, accurate and complete. It is your responsibility to inform us of any changes to that information. You may do this at any time by clicking on the 'Personal Settings' section of the Mobile App/Website. All personal information you provide us as a member will be treated in accordance with the FASTTOPUPS.COM Privacy Policy.</p>
+					<p> If you are under 18 years of age, you must obtain a parent/guardian's consent prior to using the Mobile App/Website. If you are an employee of a company or other entity or are acting on behalf of a company, you must be authorized to enter into these Terms of Use on behalf of your employer.</p>
+					<p> There are no fees to become a member of FASTTOPUPS.COM. It is free to sign up and become a FASTTOPUPS.COM member. All registered users can utilize all of the great features My Account offers at no cost. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;">Username and Password</h1>
+					<p> Once you become a member of the Mobile App/Website, we will use your phone number as your username and the Password you created during registration. In your wallet section you can set your account pin with which you can transfer credit to other users. You are entirely responsible for all activities which occur under your Username, Password and Pin, including unauthorized use of your or any other ATM/credit card. You must notify us immediately if you become aware of any unauthorized use of your Username and Password. If you forget or lose your password, you should request a new password by visiting the 'Forgot your password' section on the sign in page. Our system will then automatically send your password to the email address on file. If you forget your account pin, click on the forgot pin on the Account Pin page and a new pin will be generated and sent to your email address on file, with that pin you can reset your account pin. You also agree that you will only register in your own name. Each username and password must be used by a single user and is not transferable.</p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Your Data </h1>
+					<p> We will only send you information about the products that you have selected. Personal information collected by us as part of this service will be treated in accordance with the FASTTOPUPS.COM Privacy Policy. </p>
+					<p> Please note that the sending of personal information via e-mail over the internet may not be secure and can be intercepted by third parties or incorrectly delivered. You should not divulge personal information over the internet unless you are using a secure or encrypted communications technology. </p>
+					<p> We shall be entitled, but not obliged, to record all communications from, or instructions given by, you to us, or messages sent by us to you through the Mobile App/Website. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Your account </h1>
+					<p> If you are not resident in one of the listed countries and if the financial institution with which you have an Account is not in one of the listed countries you are not permitted to avail of the Services. </p>
+					<p> The Website can only be used by you to affect a limited number of Top-Ups and/or Top-Ups to a limited value over specific time periods. You will be automatically notified through the Mobile app/Website when these limits are reached or should attempt to affect Top-Ups, Pay Bill or Transfer Funds in excess of the limits. Other limits and exclusions may apply to the way which you can use this Website from time to time and you will be notified of these through your use of the Mobile App/Website. </p>
+					<p> You shall ensure that all instructions given by you to us through the Mobile app/Website are accurate and complete, and that, where appropriate, you correctly identify the mobile phone account to which any amount is to be credited. In particular, prior to confirming any instruction to us, you shall ensure that the instruction which is relayed back to you confirming the instruction that you send through the Mobile app/Website is the instruction which you intend to give. We are entitled to rely on any instruction from you using and, for the avoidance of doubt, the processing by us of any such confirmed instruction shall be final and binding on you. </p>
+					<p> You shall carefully examine any Top-Up, Bill Pay and Fund Transfer information received/performed by you, or any other information provided by us to you through the Mobile app/Website from time to time and shall report any errors or omissions to us in writing within 10 days from the date of dispatch of such statements or receipt of such information. In the event that no error or omission is reported by you within the time specified, we shall be entitled to rely on the conclusiveness of the relevant statement of account as respects further transactions, provided that nothing herein will prevent us or you subsequently adjusting information to correct an error or omission, but in that case without any claim to compensation or damages arising on account thereof.
+					</p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> The Services </h1>
+					<p> Top-Up </p>
+					<p> An ordering of recharge card or airtime via FASTTOPUPS.COM mobile apps/website using your ATM or wallet.</p>
+					<p> The Services shall only be provided to you by us in respect of Accounts in the listed territories (available on the website, and subject to change). Top up's are purely for use domestically within the relevant listed jurisdictions (available on the website, and subject to change). </p>
+					<p> The Mobile app/Website (including the Services delivered through it) and the Password must be used by you strictly in accordance with this Agreement. The Password will be provided by us direct to you. You must not disclose the Password, whether directly or indirectly, to any other person (including, but not limited to, any account aggregation service provider). </p>
+					<p> Bill Pay </p>
+					<p> With you Fasttopups account you can also perform payment of bills. This service is offered by a third-party organization “Quickteller”. You agree that any bill payment request sent from your account is from you and that any ATM card payment done in your account is from you and that Fasttopups reserves the right to process such payments and provide you with the bill pay service you performed. You further agree that all Bill Payments done from your Fasttopups account attracts a processing fee of N100 which will be billed on your ATM Card along with the amount you are paying for the bill pay service.
+					</p>
+					<p> Fund Transfer </p>
+					<p> With Fasttopups, you can transfer money from your bank account using your ATM Card to any bank account in Nigeria. You agree that any transfer request done in your Fasttopups account is from you and that Fasttopups reserves the right to process such transfers. Also, you agree that the payment for such services using your ATM Card is initiated by you as the owner of the Fasttopups account and that Fasttopups reserves the right to bill any account provided by you during the process of funds transfer. You further agree that all Fund transfer done from your Fasttopups account attracts a processing fee of N100 which will be billed on your ATM Card along with the amount you are transferring.
+					</p>
+					<p> Wallet Funding </p>
+					<p> With Fasttopups you will have a virtual account from where you can get rewards and bonuses from us. You can directly fund this account using your ATM Card. Funding of this account does not attract any extra charge. But you agree that any request sent from your account to fund your wallet is from you and Fasttopups reserves the right the debit your ATM Card which you supplied during the request and provide you the requested amount of credits in your wallet. On the Fasttopups website/Mobile App, 1 credit is treated as 1 Naira. If you fund your wallet with N2000 for example, your wallet will be credited with 2000 credits.
+					</p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Your obligations </h1>
+					<p> The equipment necessary for you to access the Mobile app/Website shall be provided and be maintained by and at your expense of and we may change the requirements for such equipment from time to time. </p>
+					<p> You undertake to us to comply strictly with this Agreement. You acknowledge that your compliance with this Agreement is designed to minimize the risk of unauthorized use of the Mobile app/Website. You agree to indemnify us in full in respect of any loss or damages which may arise to us, you or any third party as a consequence of your non-compliance with this Agreement. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Transactions on the Account / Refunds / Returns </h1>
+					<p> You authorize us to act upon any instruction to debit an Account received through the Mobile app/Website which has been transmitted using the Password and/or any other authentication process which we may require to be used in connection with the Mobile app/Website without requiring us to make any further authentication or enquiry, and all such debits shall constitute your liability. </p>
+					<p> Upon receipt of a proper and complete request from you for a Top-Up our processing bank will debit the ATM/credit card account and we will make the top-up code available to you for your further action-to load it directly to your primary phone number or send it to a family or friend. In cases where you have issues with the top-up, our customer representatives are available online to help you resolve your issue. You can click on the help icon within your mobile app to chat with an agent. NO REFUNDS OR RETURNS ARE PERMITTED. Also upon receipt of a proper and complete request from you for a Bill Pay subscription, Fund Transfer and Wallet Funding service our processing bank will debit the ATM/credit card account and we will make the service available to you for your further action. </p>
+					<p> Subject to your compliance with the Agreement and provided you have not acted fraudulently or in a negligent manner, we shall accept liability for the non-execution or defective execution of a Top-Up, Bill Pay, Fund Transfer and Wallet Funding effected through the Mobile app/Website but such liability shall be limited to the amount of the unexecuted or defectively executed Top-Up, Bill Pay, Fund Transfer and Wallet Funding. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Third Party Services and Information </h1>
+					<p> Many of the products and services offered for sale on FASTTOPUPS.COM or through services that we may offer you, are submitted, created or developed by third parties, about the products, services and information of third parties. Information about some of the products and services on the Website is subject to specific restrictions concerning the persons to whom such information may be made available. Details of such restrictions are set out on the pages to which they relate and you should read those details carefully before proceeding to the rest of the relevant page.</p>
+					<p> Information about some of the products and services on this Website may be subject to additional Legal Notices and Warnings, identified as such. These notices and warnings are important and are for the protection of both you and us. Please take the time to carefully read all Legal Notices and Warnings on the pages of this Website that you visit. </p>
+					<p> he third party products, services and information are not provided or endorsed by us and your legal relationship is with the third party supplier when purchasing such services or goods. We have not checked the accuracy or completeness of the information or the suitability or quality of the products and services of the third parties. You must make your own enquiries with the relevant third party supplier directly before relying on the third party information or entering into a transaction in relation to the third party products and services referred to on the Mobile app/Website.
+					</p>
+					<p> We may receive fees and/or commissions from third parties for the sale goods and services displayed or made available on the Mobile app/Website, for advertising goods and services on the Mobile app/Website, or in connection with the amount of visitors from that leave the Website to go to a linked site. You acknowledge and consent to us receiving the fees. You will be notified of the fees payable to us when you use the Website. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Termination of the Agreement </h1>
+					<p> We may terminate the Agreement and withdraw the Mobile app/Website and the Services provided through it:</p>
+					<p> On giving you at least 1 day prior written notice; </p>
+					<p> Immediately upon breach by you of any of the terms of this Agreement or where there are serious grounds for doing so and provided you are informed by notice in writing as soon as is reasonably possible after termination; </p>
+					<p> Immediately upon your bankruptcy or other contractual incapacity;
+					If you have not accessed the Mobile app/Website in any period of 12 consecutive months; or If we reasonably believe that any of the Services have been used negligently, illegally or fraudulently by you, or by a third party as a result of your negligence or recklessness. This Agreement does not have a minimum or finite duration and will continue to be binding on the parties until it is terminated. You may terminate the Agreement at any time by giving us not less than 1 days prior written notice to that effect, but without prejudice to your liability for any outstanding indebtedness on any Account or otherwise prior to the date of termination.
+					</p>
+					<p> We reserve the right to process or cancel any transactions in progress on termination of this Agreement or on suspension or withdrawal of the Services. We are not responsible for any loss you may incur as a result of any transaction not being processed as part of the Services after termination of the Agreement or after any suspension or withdrawal of the Services.
+					</p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Your contribution </h1>
+					<p> When you send us any feedback, suggestions, ideas or other materials in relation to or via our app/site or the services, you agree that we can use, reproduce, publish, modify, adapt and transmit them to others free of charge and without restriction, subject to our obligations in our Privacy Statement.</p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> VAT and Tax </h1>
+					<p> If VAT, provided you are located in our listed countries, you are not subject to paying any tax or VAT imposed on any purchase done on the FASTTOPUPS.COM Mobile app/Website. Thus, no additional fee is added to the amount of Top-Up requested. However, for Bill Pay and Fund Transfer, Fasttopups collects a fixed charge of N100 per transaction. We use this medium to inform you that we have not made provision for ATM or credit cards issued outside our listed supported countries. Do not use any of such ATM or credit cards on this Mobile app/ Website. </p>
+					<p> This Mobile app/Website is established in Nigeria in accordance with the laws and will be governed by the laws of that country. When you use the Mobile app/Website, you accept that your use of the Mobile app/Website and any information on the Mobile app/Website, will also be governed by the laws of Nigeria and if any claim or dispute arises from your use of the Mobile app/Website or any of the information on it, you agree that the domestic courts will have exclusive jurisdiction over all such claims or disputes. </p>
+					<p> Service Fees: When using the Services you and we agree that we each will not attempt to repudiate the validity of your instructions relating to the Services or the communications regarding the instructions sent to you by us. Both you and we agree that the instructions, information, communications and/or authorizations given through the Services shall be treated as satisfying any legal requirements for communication in writing. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Links to other websites </h1>
+					<p> Some pages on this Mobile app/Website contain hypertext links to web sites not maintained by us. You are reminded that when you enter other web sites via such hypertext links, you will not be subject to these terms and conditions and you will not benefit from the protections afforded to you in using our App/Site. We will not be liable in any way for the content, availability or use of such linked web sites and you use such links entirely at your own risk. </p>
+					<p> Access to and use of this Mobile app/Website is at the user's own risk and we do not represent or warrant that the use of this Mobile app/Website or any material downloaded from it will not cause damage to property, including but not limited to loss of data or computer virus infection. In no event do we accept liability of any description including liability for negligence for any damages whatsoever resulting from loss of use, data or profits arising out of or in connection with the access, use or performance of this Mobile app/Website or any of its contents. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Variations of the Agreement </h1>
+					<p> Where we are not required to notify you otherwise by law, we may alter the Agreement from time to time. Any such alteration shall become effective and shall be binding upon you 14 days after notice of such alteration has been sent to you by any of the following means: through the post or by electronic message through Site. You shall be entitled, upon receiving notice of any alteration to this Agreement, to immediately terminate the Agreement but without prejudice to any rights or obligations which have arisen prior the termination date, including your liability for any indebtedness on any Account or which has otherwise arisen prior to that termination date. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Notices </h1>
+					<p> Save where expressly provided, any notice required to be given by you to us in connection with the subject matter of this Agreement shall be given in writing and sent through the post addressed to FASTTOPUPS.COM LIMITED, Suite A10 Golden Plaza, Ogunu Road, Warri, Delta State. Or by email to support@FASTTOPUPS.COM.
+				    </p>
+					<p> Save where expressly provided, any notice required to be given by us to you in connection with the subject matter of this Agreement may be given by any of the following means: through the post or through the Mobile app/Website. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Use of Information and Confidentiality </h1>
+					<p> Subject to the terms of the Privacy Policy, and except to the extent that such disclosure is required under compulsion of law or pursuant to a direction or request issued by the Financial Regulator or other competent statutory or regulatory authority, we shall ensure that all your confidential personal data held by us in relation to this Agreement shall only be accessible to us, our agents or a company controlled by us and shall be processed or used by us for purposes and in a way compatible with the discharge of our obligation to you under the Agreement. </p>
+					<p> You shall ensure that all information obtained from us by you relating to our operations, services, software, hardware and/or systems in connection with this Agreement shall be treated by you in strictest confidence and shall not be disclosed by you to any third party unless it is already in the public domain. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Intellectual Property </h1>
+					<p> The Intellectual Property Rights in all data, information, systems, processes or other material used by or developed by us for the purposes of providing the Services or performing its obligations under this Agreement shall, or upon their creation, remain vested in us or its licensors. You shall use such material only for the purpose of receiving the Services, as contemplated by this Agreement. </p>
+					<p> Save where otherwise specified, the Intellectual Property Rights and contents of all the Mobile app/Website are owned by us or its licensors. Reproduction of part or all of the contents of the Mobile app/Website in any form is prohibited without our prior consent, other than that you may print or download one copy of the contents of the Mobile app/Website for personal non-commercial use. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Data Protection </h1>
+					<p> We will comply with its obligations under applicable data protection law as regards relevant data in its possession relating to you and shall make available for inspection by you any information held by us about you in accordance with those laws. The Privacy Policy published on the Mobile app/Website from time to time shall apply to the use of personal data relating to you and shall form part of this Agreement. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Temporary Withdrawal of Service </h1>
+					<p> In the event of a breakdown, fault or malfunction of, or connected to, any system used in connection with the Mobile app/Website and the Services, or where there is a real or potential security risk, we shall be entitled, without incurring any liability to you, to temporarily suspend the relevant Services or access to the Mobile app/Website for such reasonable period as may be required to remedy, address or resolve the system issue. Force Majeure: We shall not be in breach of its obligations under this Agreement if there is any total or partial failure of performance of our duties and obligations occasioned by any act of God, fire, act of government or state, war, civil commotion, insurrection, embargo, inability to communicate with third parties for whatever reason, failure of any computer dealing or settlement system, failure of or delay in any mobile phone network, prevention from or hindrance in obtaining any energy or other supplies, labor disputes of whatever nature, late or mistaken payment by an agent or any other reason (whether or not similar in kind to any of the above) beyond our control. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Security, Maintenance and Availability </h1>
+					<p> You accept that electronic communications, the internet, telephone lines or SMS-based telecommunications media may not be secure and communications via such media may be intercepted by unauthorized persons or delivered incorrectly. In consequence we cannot guarantee the privacy or confidentiality of communications via such media although it will put in place security measures to protect these methods of communications. </p>
+					<p> From time to time it may be necessary to or desirable for security reasons, maintenance, upgrades or other reasons to: </p>
+					<p> make certain or all of the Services unavailable to you; and/or delay implementation of any new Services; and/or withdraw, replace or reissue Passwords; and/or change authentication procedures or processes for accessing the Mobile app/Website or the Services And while we will use reasonable endeavors to minimize any inconvenience caused to you, you accept that these events may occur and that we have no liability to it in the event of this happening. Where we change authentication procedures for accessing the Mobile app/Website or the Services then, notwithstanding any other term of this Agreement, we may introduce these procedures by giving instructions to you via the Mobile app/Website in respect of which such procedures are being introduced. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Language </h1>
+					<p> The Agreement and all other documentation which will be provide by us to communicate with you throughout the duration of the Agreement will be prepared in the English language, and all communications between us and you will also be conducted in the English language. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Limited Disclosures to Affiliates </h1>
+					<p> If you became a customer through an affiliate web site or a link from an affiliate, that affiliate may receive a commission on our sales to you. We are obligated to disclose certain information about your purchases to affiliates in accounting for the affiliate's commissions. Information disclosed to affiliates is limited to: first name, first initial of last name, date of purchase, purchase amount, number of free trials, trials to activation, number of new customer orders and number of repeat customer orders. We do not disclose any CPNI to affiliates and we do not disclose any calling information or ATM/credit card information to affiliates (Remember, we do not process or store your ATM/ credit cards. Your payment is done through the Interswitch secure payment portal). </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Incorrect or Fraudulent Personal Information </h1>
+					<p> FASTTOPUPS.COM reserves the right to terminate any PINs on any services it Affiliated entities offers and to deny service or assistance to any customer or company that has provided incorrect personal information in posted orders. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Other User Conduct </h1>
+					<p> You understand that all information, data, text, messages or other materials, whether publicly posted or privately transmitted, are the sole responsibility of the person from which such content originated. This means that you, and not FASTTOPUPS.COM, are entirely responsible for all content that you upload post, email, transmit or otherwise make available via the Services. FASTTOPUPS.COM does not control the content posted via the Service and, as such, does not guarantee the accuracy, integrity or quality of such Content. You understand that by using the Services, you may be exposed to Content that is offensive, indecent or objectionable. Under no circumstances will FASTTOPUPS.COM be liable in any way for any Content, including, but not limited to, for any errors or omissions in any Content, or for any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the Service. You agree to not use the Services to: </p>
+					<p> upload, post, email, transmit or otherwise make available any Content that is unlawful, harmful, threatening, abusive, harassing, tortuous, defamatory, vulgar, obscene, libelous, invasive of another's privacy, hateful, or racially, ethnically or otherwise objectionable; impersonate any person or entity, including, but not limited to, an FASTTOPUPS.COM official, or falsely state or otherwise misrepresent your affiliation with a person or entity; intentionally or unintentionally violate any applicable local, state, national or international law, or any regulations having the force of law; "stalk" or otherwise harass another User; or Collect or store personal data about other Users. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Remedies for Misuse of Your Account </h1>
+					<p> Without limiting any other remedies, FASTTOPUPS.COM may terminate or suspend your account and status as a Member if you misuse your account or any services. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Accuracy of Information Submitted to FASTTOPUPS.COM </h1>
+					<p> You are responsible for the truth and accuracy of all information you provide publicly or privately to us or other Users during the registration, or in any public message area, including but not limited to chat, discussion forms, and your e-mail. Your Information:
+					<p>(a) shall not be fraudulent;</p><p>(b) shall not infringe any third party's copyright, patent, trademark, trade secret or other proprietary rights or rights of publicity or privacy; </p><p>(c) shall not violate any law, statute, ordinance or regulation (including without limitation those governing export control, consumer protection, unfair competition, anti-discrimination or false advertising;</p><p>(d) shall not be defamatory, trade libelous, unlawfully threatening or unlawfully harassing;</p><p>(e) shall not be obscene or contain child pornography or, if otherwise harmful to minors; </p><p>(f) shall not contain any viruses, or other computer programming routines that are intended to damage, detrimentally interfere with, surreptitiously intercept or expropriate any system, data or personal information;and </p><p>(g) shall not link directly or indirectly to any other site; </p><p>(h) shall not contain any item that, by paying to us the listing fee or the final value fee, could cause us to violate any applicable law, statute, ordinance or regulation. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Chargeback's </h1>
+					<p> If You, in breach of this User Agreement and the Refund Policy, request a chargeback on any order from FASTTOPUPS.COM, FASTTOPUPS.COM may, at its sole discretion </p><p>(1) terminate your membership registration;</p><p>(2) to deny service or assistance to You; </p><p>(3) cancel all outstanding PINs from any mobile recharges you have purchased from FASTTOPUPS.COM and seek refund from the Carriers on those PINs; </p><p>(4) report information about You and the transaction to a chargeback abuser database; and </p><p>(5) collect the amount due from You directly, including through legal action, if necessary.
+					</p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Rewards </h1>
+					<p> Affiliate Reward: </p>
+					<p> Every Fasttopups users have affiliate codes which they can give to people they invite to register with. Ones those people register and make their first purchase, the inviter will be given 50 credits in his wallet. The more you invite people the more you earn 50 credits. This credit can be used to purchase recharge cards on the Fasttopups website/mobile app. Note that this credit cannot be withdrawn. </p>
+					<p> First Time Buyer Reward: </p>
+					<p> All first time buyers of the Fasttopups mobile app and website are given 50 credits each in their wallet. This credit can be used to purchase recharge cards on the Fasttopups website/mobile app. Note that this credit cannot be withdrawn.</p>
+					<p> Top10 Buyers Reward </p>
+					<p> This is a rewarding system that picks the top10 buyers of each service providers and their respective amounts. If a user emerges as a top 10 winner of MTN 1500 recharge cards, the user will be credited 1500 credits in his wallet at the end of every week. This credit can be used to purchase recharge cards on the Fasttopups website/mobile app. Note that this credit cannot be withdrawn.</p>
+					<p> Monthly Super 3 winners Reward </p>
+					<p>The winner of this section is determined by the weekly top10 winners. If a user appears as top10 for 4 weeks within one month, the user will be qualified for a draw which is conducted by Fasttopups Team. In this draw, Fasttopups will select 3 winners each for every service providers according to their amounts.</p>
+					<p>For MTN 1500 three winners will be selected, the first receives 15000 credits in his wallet, the second receives 10000 and the third receives 8000. For more information on this draw please visit fasttopups.com or contact our customer service representative. This credit can be used to purchase recharge cards on the Fasttopups website/mobile app. Note that this credit cannot be withdrawn.</p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> No Obligation to Verify </h1>
+					<p> FASTTOPUPS.COM has no obligation to verify your information or your order and FASTTOPUPS.COM may opt to process an order immediately, without verification, at its sole discretion. All verification performed is solely for the benefit of FASTTOPUPS.COM and neither you, nor your ATM/credit card company, nor any other person is a third party beneficiary of any FASTTOPUPS.COM verification. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> All charges in Nigeria Naira </h1>
+					<p> All payments to FASTTOPUPS.COM must be made in Nigeria Naira. Your ATM/credit card must be able to process charges in Nigeria Naira. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> ATM/Credit Card Verification </h1>
+					<p> FASTTOPUPS.COM'S processing bank (Interswitch Ltd.) may use credit card verification (CCV) services. If your name, phone number, address, security code, or other debit/credit card information does not pass CCV, FASTTOPUPS.COM may cancel your order without notice and not deliver your mobile recharges, bill pay and fund transfer and wallet funding services. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> ATM/Credit Card Denial </h1>
+					<p> If your ATM/credit card charge is denied for any reason, including, but not limited to, insufficient credit availability, failed CCV, presentment of the payment in Nigeria Naira, or any other reason, FASTTOPUPS.COM will cancel your order and not deliver the mobile recharges, bill pay, fund transfer and wallet fund requested. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Customer Responsible for Credit or Debit Card Fees </h1>
+					<p> You are responsible for any fees charged by your credit or debit card provider for purchases made at FASTTOPUPS.COM, including, but not limited to, charges for currency exchange, over limit fees, interest, cash advance fees, and other charges. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> SMS Sending Fees </h1>
+					<p> When you use the "Send to a family or friend" button in the Mobile app/ Website and select the send via SMS option, your mobile service provider will deduct the SMS sending fees from your mobile account. FASTTOPUPS.COM is not responsible for the payment of such fees. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Internet Access/ Browsing Fees </h1>
+					<p> To use the FASTTOPUPS.COM Mobile app/Website you must be internet enabled. You are responsible for the fees you are charged based on your internet service provider package you are subscribed to. FASTTOPUPS.COM is not in any way responsible for paying your internet browsing fees. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Adequate Disclosure of Prepaid Mobile Recharge Information </h1>
+					<p> You acknowledge that all prices, charges, expiration dates, service fees, and other terms and conditions for each and every card offered by FASTTOPUPS.COM are available on the FASTTOPUPS.COM web site or by calling our customer service department at 08088823308. You acknowledge that all such information has been provided or made available to you in a manner in compliance with applicable law.</p>
+					<p> You expressly represent that you have investigated the prices, charges, expiration dates, service fees, and other terms and conditions of each mobile recharge you purchase from FASTTOPUPS.COM or have waived your right to do so. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Authority to Purchase </h1>
+					<p> You represent and warranty that you are an authorized user of all ATM/credit cards used to make purchases on FASTTOPUPS.COM or have received permission from the owner of such account to make purchases. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Ownership of Data </h1>
+					<p> Since FASTTOPUPS.COM is a reseller of mobile recharges, we do not have direct access to any call records, except for limited use for customer service. In order to obtain a call history, you should contact the carrier directly. </p>
+					<p> If, through a subpoena or other legal process, You, Your representations, or a third party, seek to compel production of Your calling history, purchase history, CPNI, or other information, You will pay us a handling fee of N30,500.00 to obtain these records, plus a copying fee of N198.00 per page for each record produced. </p>
+					<p> You acknowledge and agree that any information obtained by FASTTOPUPS.COM through Your use of the Mobile App/Web Site or Services, or through your purchase of mobile recharges, bill pay, fund transfer and wallet funding, is the property of FASTTOPUPS.COM, and FASTTOPUPS.COM reserves all rights to such property. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Agency </h1>
+					<p> You agree that you have entered into this Agreement for your own benefit and not for the benefit of another person, and that you may not subcontract or assign any of your rights or obligations under this Agreement. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Governing Law </h1>
+					<p> All relations established by us with you prior to this Agreement being entered into and this Agreement, are governed by and will be construed with the laws of the Federal Republic of Nigeria, and the courts of Delta State shall have exclusive jurisdiction to resolve any disputes in connection with them. </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Severability </h1>
+					<p> If, at any time, any provision of this Agreement (or any part of a provision of this Agreement) is or becomes illegal, invalid or unenforceable, that shall not affect or impair the legality, validity or enforceability the remainder of this Agreement (including the remainder of a provision where only part thereof is or has become illegal, invalid or unenforceable). </p>
+				</div>
+				<div class="clr"></div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Waiver </h1>
+					<p> Any waiver by us of a breach or default of any of the provisions of this Agreement shall not be construed as a waiver of any succeeding breach of the same or other provisions, nor shall any delay or omission on our part to exercise or avail of any right, power or privilege that we have or may have, operate as a waiver of any breach or default by you. </p>
+				</div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Use of Intellectual Property </h1>
+					<p> You shall not reproduce any of the FASTTOPUPS.COM trademarks, copyrights content, or other intellectual property rights without the prior written permission of FASTTOPUPS.COM.</p>
+					<p> The agreement concluded between us and you for the purposes of receiving any of the Services through the Mobile app/Website which consists of <p></p>(1) the Registration Form; <p></p>(2) these Terms and Conditions; and <p></p>(3) the Privacy Policy appearing on the Mobile app/Website from time to time. In the event of any conflict or ambiguity between any of these documents, then these Terms and Conditions will prevail. </p>
+				</div>
+			</li>
+			<li>
+				<div class="blogContent blogD-content">
+					<h1 style="margin-bottom:20px;"> Limitation of Liability </h1>
+					<p> FASTTOPUPS.COM IS NOT LIABLE FOR ANY THIRD PARTY'S FAILURE TO PERFORM OBLIGATIONS ARRISING OUT OF A MOBILE RECHARGE. ALL MOBILE RECHARGES ARE SOLD WITHOUT RECOURSE AGAINST FASTTOPUPS.COM FOR PERFORMANCE OF THE CARRIER'S OBLIGATIONS UNDER SUCH RECHARGES.<p></p>
+					<p> FASTTOPUPS.COM OFFERS SIGNIFICANT DISCOUNTS ON THE PURCHASE OF MOBILE RECHARGES. YOU ACKNOWLEDGE THAT WE ARE ABLE TO ONLY OFFER THESE PRICES BECAUSE OF THE LIABILITY LIMITATIONS, INDEMNIFICATION PROVISIONS, AND OTHER PROVISIONS CONTAINED WITHIN THIS USER AGREEMENT.</p>
+					<p> HE MAXIMUM LIABILITY OF FASTTOPUPS.COM FOR ANY LOSS, WHETHER ARRISING UNDER A TORT, CONTRACT, OR OTHER LEGAL THEORY, OUT OF ANY MOBILE RECHARGE PURCHASE FROM FASTTOPUPS.COM IS THE LESSER OF THE ACTUAL PURCHASE PRICE PAID BY YOU FOR THE MOBILE RECHARGE OUT OF WHICH THE DISPUTE ARRISES.</p>
+					<p> FASTTOPUPS.COM WILL NOT BE LIABLE, UNDER ANY CIRCUMSTANCES, FOR ANY INDIRECT, SPECIAL, INCIDENTIAL, OR CONSEQUENTIAL DAMAGES OF ANY KIND (INCLUDING LOST PROFITS, MENTAL ANGUISH, OR EMOTIONAL DISTRESS) ARRISING OUT OF YOUR USE OR INABILITY TO USE ANY MOBILE RECHARGE PURCHASED AT FASTTOPUPS.COM.</p>
+					<p> NEITHER FASTTOPUPS.COM, NOR ITS AFFILIATES, OFFICERS, DIRECTORS, SHAREHOLDERS, MEMBERS, OR EMPLOYEES, IS LIABLE TO YOU FOR THE NEGLIGENCE OR GROSS NEGLIGENCE OF ANY PARTY.</p>
+					<p> IN THE EVENT THAT THE ABOVE LIMITATION IS GREATER THAN THE LIMITATION ALLOWED BY APPLICABLE LAW, OUR LIABILITY WILL BE LIMITED TO THE MAXIMUM PERMITTED BY APPLICABLE LAW.</p>
+					<p> YOU ACKKNOWLEDGE THAT SINCE, FASTTOPUPS.COM, IS A RESELLER, IT IS NOT LIABLE FOR ANY 3RD PARTY (CARRIERS & SUPPLIERS) OBLIGATIONS DUE TO RATES, QUALITY, AND ALL OTHER INSTANCES. YOU ACKNOWLEDGE AND AGREE THAT FASTTOPUPS.COM WILL NOT BE LIABLE, UNDER ANY CIRCUMSTANCES, FOR ANY INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY KIND (INCLUDING LOST PROFITS) REGARDLESS OF THE FORM OF ACTION WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, EVEN IF FASTTOPUPS.COM HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT SHALL FASTTOPUPS.COM's MAXIMUM AGGREGATE LIABILITY EXCEED THE TOTAL AMOUNT PAID BY YOU FOR THE SERVICES. BECAUSE SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, IN SUCH STATES, OUR LIABILITY IS LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW.</p>
+				</div>
+			</li>
+		</ul>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<!-- <input type="button" id="returntotermspage" value="Return" name="Return"> -->
+	</div>
+</section>
+	
+</div>
+<div data-role="page" id="paybill">
+            <div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="paybillback" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel22"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+		<div data-role="navbar" style=" margin-top: -1px !important;">
+            <ul>
+				<li><a href="#" data-inline="true" id="billhistory" >Bill History</a></li>
+            </ul>
+        </div>
+		<div data-role="panel" id="overlayPanel22" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+	<div class="mainCon">
+		<div class="divheader" style="margin-top:30px !important;">
+			<!-- <div class="back" id="bcktosrvcprovidrpage"><a href="#"><img src="img/back.png" alt=""></a></div> -->
+			<!-- <div class="notification"><a href="#"> --><!-- <img src="img/bell.png" alt=""> --><!-- </a></div> -->
+			<!-- <div class="hd">Voucher </div> -->
+<div class="ui-field-contain">
+    <!-- <label for="select-native-2">Mini sized:</label> -->
+    <select name="select-native-2" id="dropdownlst" data-mini="true">
+<!-- 		<option value="0">Select</option>
+        <option value="1">The 1st Option</option>
+        <option value="2">The 2nd Option</option>
+        <option value="3">The 3rd Option</option>
+        <option value="4">The 4th Option</option> -->
+    </select>
+</div>
+		</div>
+		<section class="midCon" style="margin:24px 0px -40px 0px;">
+			<div class="coupanCon clearfix" id="paybilldiv">
+			</div>
+		</section>
+<!-- 		<footer data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div class="inviteFriend" id=""><a href="#">Invite Friends</a></div>
+			<div class="sep"><span></span></div>
+			<div class="myOrder" onclick="chat_user_list()" id=""><a href="#">Chat</a></div>
+		</footer> -->
+	</div>
+</div>
+<div data-role="page" id="paybillerpage">
+            <div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="paybillerback" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel23"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+			<div data-role="navbar" style=" margin-top: -1px !important;">
+            <ul>
+				<li><a href="#" data-inline="true" id="forbillhistory" >Bill History</a></li>
+            </ul>
+        </div>
+		<div data-role="panel" id="overlayPanel23" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+<div class="mainCon">
+    <div class="loginHd" id="forpaybillhd" style="padding:0px"></div>
+	<section class="midCon" style="bottom:10px !important;top:142px;">
+		<div class="providerList" style="height:100% !important; margin:0px 0 10px !important;">
+		  <div class="">
+			<div class="loginBox">
+				<div class="arrow"></div>
+				<div class="ui-field-contain" id="ddlbiller">
+					<select name="select-native-2" id="billerlst" data-mini="true">
+						<!-- <option value="0">Select an option</option>
+						<option value="1">The 1st Option</option>
+						<option value="2">The 2nd Option</option>
+						<option value="3">The 3rd Option</option>
+						<option value="4">The 4th Option</option> -->
+					</select>
+				</div>
+				<div class="loginField"><input type="text" id="smartcardno" placeholder="" class="loginInput"></div>
+				<div class="loginField"><input type="text" id="itemamt" placeholder="Amount*" class="loginInput"></div>
+				<div class="loginField"><input type="email" id="usremail" placeholder="Email*" class="loginInput"></div>
+				<div class="loginField"><input type="tel" id="mobilenousr" class="loginInput" placeholder="Mobile Number*" maxlength="15"></div>
+				<input type="hidden" id="hdnproductid" value="">
+				<input type="hidden" id="hdnshortname" value="">
+				<input type="hidden" id="hdnbillername" value="">
+				<input type="hidden" id="hdnbillerid" value="">
+				<input type="hidden" id="hdnitemid" value="">
+				<input type="hidden" id="hdnservicename" value="">
+				<div class="clr"></div>
+			</div>
+			<div class="btnBox clearfix"><button class="loginBtn" id="paybillbtn">Continue</button></div>
+		  </div>
+		</div>
+	</section>
+</div>
+</div>
+<div data-role="page" id="billhistorypage">
+<div data-role="header" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" class="headerblck divheader1" id="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckbillhistry" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel24"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+		<div class="" style="background-color:#fea82a;margin:-6px 0px 0px 0px">
+			<div class="tac" style="margin:70px 0px 0px 0px;color:#fff; font-size:20px;">Bill History</div>
+			<!-- <div class="hd">Fund Transfer History</div> -->
+		</div>
+ </div>
+		<div data-role="panel" id="overlayPanel24" data-display="overlay" data-position="right" data-position-fixed="true" class="divheader1">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+    <div role="main" class="ui-content">
+	<div class="">
+				<!-- <section class="midConn"> -->
+				<div class="providerList" style=" margin: 50px 0 10px !important;">
+						<ul class="" data-role="listview" id="billhstrylist" style="padding: 10px 0 0 !important;">
+						    <!-- <li><div class='fl wd100p'><div style='margin-left:2%;float:left;font-weight:bold'>Customer Id :</div><div style='margin-left:5%;float:left;font-weight:bold'>000001</div></div><div class='fl wd100p mt20'><div style='margin-left:2%;float:left;font-weight:bold'>Biller Name :</div><div style='margin-left:5%;float:left;font-weight:bold'>DSTV Subscription</div><div style='width:100px;margin-right:10px;background-color:#40ff00;border: 1px solid #cdcdcd;color:#000;float:right;text-align:center;' class='txtshadow'>View Pin</div></div><div class='fl wd100p'><div style='margin-left:2%;float:left;font-weight:bold'>Service Option :</div><div style='margin-left:5%;float:left;font-weight:bold'>ACCESS BOUQUET</div></div></li> -->
+						</ul>
+<!-- 						<ul class="top_10_name" data-role="listview" id="list1">
+						</ul> -->
+				</div>
+    </div>
+		<footer style="background-color:#fea82a;height: 10px;" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div align="center"></div>
+		</footer>
+</div>
+</div>
+<div data-role="page" id="transfer_fund_page">
+            <div data-role="header" class="headerblck" id="" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="transfer_fundback" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel26"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+            </div>
+			
+ 		<div data-role="navbar" style=" margin-top: -1px !important;">
+            <ul>
+				<li><a href="#" data-inline="true" id="fund_trnsfr_history" >Fund Transfer History</a></li>
+            </ul>
+        </div>
+		<div data-role="panel" id="overlayPanel26" data-display="overlay" data-position="right">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+<div class="mainCon">
+    <div class="loginHd" style="padding:0px">Transfer Fund</div>
+	<section class="midCon" style="bottom:10px !important;">
+		<div class="providerList" style="height:100% !important; margin:10px 0 10px !important;">
+		  <div class="">
+			<div class="loginBox">
+				<div class="arrow"></div>
+				<!-- <div class="ui-field-contain" id="ddlbanklist"> -->
+				<div class="mb15" >
+					<select name="select-native-2" id="banklist" data-mini="false">
+						<option value="0">Select Destination bank</option>
+						<option value="044">Access Bank</option>
+						<option value="063">Diamond Bank</option>
+						<option value="050">Ecobank</option>
+						<option value="214">FCMB</option>
+						<option value="070">Fidelity Bank</option>
+						<option value="011">First Bank of Nigeria</option>
+						<option value="058">Guaranty Trust Bank</option>
+						<option value="030">Heritage Bank</option>
+						<option value="301">Jaiz Bank</option>
+						<option value="082">Keystone</option>
+						<option value="076">Skye Bank</option>
+						<option value="039">Stanbic IBTC Bank</option>
+						<option value="232">Sterling Bank</option>
+						<option value="032">Union Bank</option>
+						<option value="033">United Bank for Africa</option>
+						<option value="215">Unity Bank</option>
+						<option value="035">Wema Bank</option>
+						<option value="057">Zenith Bank</option>
+					</select>
+				 </div>
+				<!--<div class="ui-field-contain" id="ddlacounttype"> -->
+				<div class="mb15 mt10">
+					<select name="select-native-2" id="acounttypelist" data-mini="false">
+						<option value="">Select Account Type</option>
+						<option value="20">Current</option>
+						<option value="10">Savings</option>
+						<option value="00">Not Sure</option>
+					</select>
+				</div>
+				<div class="loginField"><input type="number" id="accountno" placeholder="Enter account number*" class="loginInput"></div>
+				<div class="loginField"><input type="text" id="beneficiarysurname" placeholder="Enter beneficiary Surname *" class="loginInput"></div>
+				<div class="loginField"><input type="text" id="beneficiaryothername" placeholder="Enter beneficiary other name*" class="loginInput"></div>				
+				<div class="loginField"><input type="number" id="trnsfrfundamt" placeholder="Amount*" class="loginInput"></div>
+				<div class="loginField"><input type="email" id="beneficiaryemail" placeholder="Enter beneficiary email" class="loginInput"></div>
+				<div class="loginField"><input type="tel" id="beneficiarymobileno" class="loginInput" placeholder="Enter beneficiary mobile number" maxlength="15"></div>
+				<div class="loginField"><input type="text" id="remarkforfund" class="loginInput" placeholder="Remark"></div>
+				<!-- <input type="hidden" id="hdnproductid" value="">
+				<input type="hidden" id="hdnshortname" value="">
+				<input type="hidden" id="hdnbillername" value="">
+				<input type="hidden" id="hdnbillerid" value=""> -->
+				<div class="clr"></div>
+			</div>
+			<div class="btnBox clearfix"><button class="loginBtn" id="transfer_fundbtn">Continue</button></div>
+		  </div>
+		</div>
+	</section>
+</div>
+</div>
+<div data-role="page" id="transferhistorypage">
+<div data-role="header" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" class="headerblck divheader1" id="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bcktransferhistry" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel27"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+		<div class="" style="background-color:#fea82a;margin:-6px 0px 0px 0px">
+			<div class="tac" style="margin:70px 0px 0px 0px;color:#fff; font-size:20px;">Fund Transfer History</div>
+			<!-- <div class="hd">Fund Transfer History</div> -->
+		</div>
+ </div>
+		<div data-role="panel" id="overlayPanel27" data-display="overlay" data-position="right" data-position-fixed="true" class="divheader1">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+    <div role="main" class="ui-content">
+	<div class="">
+				<!-- <section class="midConn"> -->
+				<div class="providerList" style=" margin: 50px 0 10px !important;">
+						<ul class="" data-role="listview" id="fundtrnsfrhstrylist" style="padding: 10px 0 0 !important;">
+						    <!-- <li><div class='fl wd100p'><div style='margin-left:2%;float:left;font-weight:bold'>Customer Id :</div><div style='margin-left:5%;float:left;font-weight:bold'>000001</div></div><div class='fl wd100p mt20'><div style='margin-left:2%;float:left;font-weight:bold'>Biller Name :</div><div style='margin-left:5%;float:left;font-weight:bold'>DSTV Subscription</div><div style='width:100px;margin-right:10px;background-color:#40ff00;border: 1px solid #cdcdcd;color:#000;float:right;text-align:center;' class='txtshadow'>View Pin</div></div><div class='fl wd100p'><div style='margin-left:2%;float:left;font-weight:bold'>Service Option :</div><div style='margin-left:5%;float:left;font-weight:bold'>ACCESS BOUQUET</div></div></li> -->
+						</ul>
+<!-- 						<ul class="top_10_name" data-role="listview" id="list1">
+						</ul> -->
+				</div>
+    </div>
+		<footer style="background-color:#fea82a;height: 10px;" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div align="center"></div>
+		</footer>
+</div>
+</div>
+<div data-role="page" id="wallethistorypage">
+<div data-role="header" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="" class="headerblck divheader1" id="" style="height: 70px;">
+                <div class="fl wd100p mt15">
+                    <div class="fl ml10 wd10p">
+                        <img class="fl" alt="Profile Pic" id="bckwallethistry" style="height:40px; margin: 5px;" src="img/back.png" />
+                    </div>
+                    <div class="fl wd60p mt5 txtshadow" style="text-align:center;color:#fff;font-size:25px;font-weight:bold; line-height: 40px;"><img src="img/logo2_560.png" style="height:45px;" alt=""> </div>
+				    <div class="fr wd20p">
+                        <a href="#overlayPanel28"><img class="fr" alt="Profile Pic" style="height:40px; margin: 5px 15px 5px 5px;" src="img/menu.png" /></a>
+                    </div>
+                </div>
+		<div class="" style="background-color:#fea82a;margin:-6px 0px 0px 0px">
+			<div class="tac" style="margin:70px 0px 0px 0px;color:#fff; font-size:20px;">Wallet History</div>
+			<!-- <div class="hd">Fund Transfer History</div> -->
+		</div>
+ </div>
+		<div data-role="panel" id="overlayPanel28" data-display="overlay" data-position="right" data-position-fixed="true" class="divheader1">
+				<ul class="mob_menu">
+					<li><a href="#" onclick="backsrvcProvidrPg()"><img src="img/left_caret.png" alt="">Home</a></li>
+					<li><a href="#" onclick="top10pagefunc()"><img src="img/left_caret.png" alt="">Top 10 Buyers</a></li>
+					<li><a href="#" onclick="updatepagefunc()"><img src="img/left_caret.png" alt="">Change Password</a></li>
+					<li><a href="#" onclick="affiliatehstry()"><img src="img/left_caret.png" alt="">Affiliate History</a></li>
+					<li><a href="#" onclick="walletpagefunc()"><img src="img/left_caret.png" alt="">Wallet</a></li>
+					<li><a href="#" onclick="myordrPgfunc()"><img src="img/left_caret.png" alt="">My Cards</a></li>
+					<li><a href="#" onclick="helppagefunc()"><img src="img/left_caret.png" alt="">Help</a></li>
+					<li><a href="#" onclick="backtohome()"><img src="img/left_caret.png" alt="">Logout</a></li>
+				</ul>
+		</div>
+    <div role="main" class="ui-content">
+	<div class="">
+				<!-- <section class="midConn"> -->
+				<div class="providerList" style=" margin: 50px 0 10px !important;">
+						<ul class="" data-role="listview" id="wallethstrylist" style="padding: 10px 0 0 !important;">
+						    <!-- <li><div class='fl wd100p'><div style='margin-left:2%;float:left;font-weight:bold'>Customer Id :</div><div style='margin-left:5%;float:left;font-weight:bold'>000001</div></div><div class='fl wd100p mt20'><div style='margin-left:2%;float:left;font-weight:bold'>Biller Name :</div><div style='margin-left:5%;float:left;font-weight:bold'>DSTV Subscription</div><div style='width:100px;margin-right:10px;background-color:#40ff00;border: 1px solid #cdcdcd;color:#000;float:right;text-align:center;' class='txtshadow'>View Pin</div></div><div class='fl wd100p'><div style='margin-left:2%;float:left;font-weight:bold'>Service Option :</div><div style='margin-left:5%;float:left;font-weight:bold'>ACCESS BOUQUET</div></div></li> -->
+						</ul>
+<!-- 						<ul class="top_10_name" data-role="listview" id="list1">
+						</ul> -->
+				</div>
+    </div>
+		<footer style="background-color:#fea82a;height: 10px;" data-position="fixed"  data-tap-toggle="false" data-hide-during-focus="">
+			<div align="center"></div>
+		</footer>
+</div>
+</div>
+</body>
+</html>

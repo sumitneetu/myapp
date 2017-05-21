@@ -1,0 +1,289 @@
+ <div class="scrollable scroll_top" ui-shared-state="searchBar" >
+ <div class="scrollable-content" >
+<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+		<div class="tg-innerpagebanner">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="tg-pagetitle">
+							<h1>Post Job</h1>
+						</div>
+						<ol class="tg-breadcrumb">
+							<li><a href="">Home</a></li>
+							<li class="tg-active">Post job</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+			
+			<div class="tg-main-section tg-haslayout">
+				<div class="container">
+					<div class="row">
+						<div id="tg-content" class="tg-content">
+							<form class="tg-themeform tg-formamanagejobs">
+						<fieldset>
+							<div class="row" style="margin-bottom:20px; ">
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+								<a class="tg-btn tg-btnpostanewjob" href="" ng-click="saveJob(jobs)">Save Job</a>
+							</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<input type="text" name="text" class="form-control" placeholder="Job Title">
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<textarea placeholder="Description"></textarea>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<h2>Job Detail</h2>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Project Type:</span>
+										<div class="tg-select tg-career">
+											<select>
+												<option value="1">On Going</option>
+												<option value="2">On Time</option>
+												<option value="3">Not Sure</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Where are you in life cycle:</span>
+										<div class="tg-select tg-where-r-u">
+											<select>
+												<option value="1">I have design</option>
+												<option value="2">I have specifications</option>
+												<option value="3">N/A</option>
+												<option value="4">I have an idea</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Required Experience level:</span>
+										<div class="tg-select tg-experience">
+											<select >
+												<option value="1">Entry Level($)</option>
+												<option value="2">Intermediate($$)</option>
+												<option value="3">Expert($$$)</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Required time commitment:</span>
+										<div class="tg-select tg-jobcommitment">
+											<select>
+												<option value="1">More then 30 hour/week</option>
+												<option value="2">Less than 30 hrs/week</option>
+												<option value="3">I don't know yet</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Job finish time last: </span>
+										<div class="tg-select tg-jobtyp">
+											<select>
+												<option value="1">More than 6 months</option>
+												<option value="2">3 to 6 months</option>
+												<option value="3">1 to 3 months</option>
+												<option value="4">Less than 1 month</option>
+												<option value="5">Less than 1 week</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Required freelancer:</span>
+										<div class="tg-select tg-travel">
+											<select ng-model="jobs.requiredfree" ng-change="getFreeLancer(jobs.requiredfree)">
+												<option value="0" selected>Please Select</option>
+												<option value="1">One freelancer</option>
+												<option value="2">More then one</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="freelancerFlag">
+									<div class="form-group tg-inputborder">
+											<div class="form-group">
+												<input type="text" name="text" class="form-control" placeholder="Freelancer count">
+											</div>
+										
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Pay type:</span>
+										<div class="tg-select tg-qualifications">
+											<select>
+												<option value="0">Select Payment type</option>
+												<option value="1">Pay per hour</option>
+												<option value="2">Fixed Price</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Operating System:</span>
+										<div class="tg-select tg-os">
+											<select>
+												<option value="0">Select Operating System</option>
+												<option value="1">Mac</option>
+												<option value="2">Windows</option>
+												<option value="3">Linux</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<h2>Job Settings</h2>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Job view settings:</span>
+										<div class="tg-select tg-settings">
+											<select>
+												<option value="1">public search</option>
+												<option value="2">Only 	website users</option>
+												<option value="3">Only invited</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Job success score:</span>
+										<div class="tg-select tg-success-score">
+											<select>
+												<option value="1">90% success</option>
+												<option value="2">80% success</option>
+												<option value="2">70% success</option>
+												<option value="2">60% success</option>
+												<option value="2">50% success</option>
+												<option value="2">40% success</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Hour billed on site:</span>
+										<div class="tg-select tg-success-score">
+											<select>
+												<option value="0">Please Select</option>
+												<option value="1">1 hour</option>
+												<option value="2">100 hour</option>
+												<option value="3">500 hour</option>
+												<option value="4">1000 hour</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>Location Required:</span>
+										<div class="tg-select tg-success-score">
+											<select>
+												<option value="1">India</option>
+												<option value="2">China</option>
+												<option value="3">US</option>
+												
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 tg-columnpadding">
+									<div class="form-group tg-inputborder">
+										<span>English Level:</span>
+										<div class="tg-select tg-success-score">
+											<select>
+												<option value="1">Basic</option>
+												<option value="2">conventional</option>
+												<option value="3">fluent</option>
+												<option value="4">native</option>
+												
+											</select>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</fieldset>
+						<fieldset>
+							<h2>Job Requirement</h2>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<textarea placeholder="Job Requirement"></textarea>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<h2>Benefits / Allowances</h2>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="tg-addallowances">
+										<div class="tg-addallowance">
+											<div class="form-group">
+												<input type="tel" name="allowances" class="form-control" placeholder="Type Benefits / Allowances">
+												<a class="tg-btn" href="http://mydesignhoard.com/HTML/html/service_provider/dashboardmanagejobs.html#">Add Now</a>
+											</div>
+											<ul class="tg-allowances">
+												<li><a href="http://mydesignhoard.com/HTML/html/service_provider/dashboardmanagejobs.html#">Consectetur Adipisicing<i class="fa fa-close"></i></a></li>
+												<li><a href="http://mydesignhoard.com/HTML/html/service_provider/dashboardmanagejobs.html#">Eiusmod Tempor<i class="fa fa-close"></i></a></li>
+												<li><a href="http://mydesignhoard.com/HTML/html/service_provider/dashboardmanagejobs.html#">Incididunt Ut Labore<i class="fa fa-close"></i></a></li>
+												<li><a href="http://mydesignhoard.com/HTML/html/service_provider/dashboardmanagejobs.html#">Ad Minim Veniam<i class="fa fa-close"></i></a></li>
+												<li><a href="http://mydesignhoard.com/HTML/html/service_provider/dashboardmanagejobs.html#">Exercitation Ullamco<i class="fa fa-close"></i></a></li>
+												<li><a href="http://mydesignhoard.com/HTML/html/service_provider/dashboardmanagejobs.html#">Dolore Magna Aliqua<i class="fa fa-close"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<!--************************************
+					Login Register End
+			*************************************-->
+		</main>
+		<div ng-include="'templates/footer.html'"></div>	
+		<!--************************************
+				Footer End
+		*************************************-->
+	</div>
+	</div>
+	</div>
+	
